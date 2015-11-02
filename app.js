@@ -134,9 +134,6 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
   }
 );
 
-<<<<<<< HEAD
-mailsender.sendmail('fredgeorge123@mail.com','test subject','test message');
-=======
 function matchRides() {
 	  var minutes = 1;
 	  var interval = minutes * 10 * 1000;
