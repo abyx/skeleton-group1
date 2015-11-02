@@ -2,8 +2,10 @@ var Q = require('q');
 var express = require('express');
 var bodyParser = require('body-parser');
 var elasticsearch = require('elasticsearch');
+var mail = require('./mail');
 var _ = require('lodash');
-var mailsender=require('./mail');
+var mailsender = require('./mail');
+var checkRides = require('./checkRides');
 var app = express();
 
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
@@ -142,16 +144,16 @@ function matchRides() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
 	  		
-	  		var matchResult = checkRides();
+	  		var passengerList = checkRides.checkRides();
 	  			
-	  		if(matchResult != null && matchResult != 'undefined')
+	  		if(passengerList != null && passengerList != 'undefined')
 	  		{
-	  			console.log("matchResult.status = " +  matchResult.status);
+	  			console.log("passengerList = " +  passengerList);
 	  			
-	  			 if(matchResult.status)
+	  			 for(i = 0; i < passengerList.length; i++)
 	  			 {
 	  			 	//get the email
-	  			 	  var passangerEmail = getPassangerEmailByID(1);
+	  			 	  var passangerEmail = getPassangerEmailByID(passengerList[i]);
 	  			 	  
 	  			 	  console.log("passangerEmail = " + passangerEmail);
 	  			 	  var txt = "Thank you for using the amazing KdCar !!! we have a WINNER !!! You will be ride with Shai Hasan the KING on this Wednesday at 08:30 AM from Tel-Aviv base to Jerusalem :-). Have a nice ride!!!"; 
@@ -159,7 +161,7 @@ function matchRides() {
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = sendMail(passangerEmail, subjet, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, txt);
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
@@ -177,8 +179,10 @@ function matchRides() {
 		}, interval);
 }
 
-function getPassangerEmailByID(passangerID)
+function getPassangerEmailByID(passanger)
 {
+	var email = passanger.mail;
+	console.log("email = " + email + ". but sending to fredgeorge123@mail.com");
 	return "fredgeorge123@mail.com";
 }
 
@@ -194,7 +198,9 @@ function sendMail()
 	return true;
 }
 
-function checkRides()
-{
-	 return { status : true, rideID : 1 };
-}
+ 
+//function checkRides()
+//{
+//	 return { status : true, rideID : 1 };
+//}
+ 

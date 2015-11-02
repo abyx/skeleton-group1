@@ -1,38 +1,42 @@
 var Q = require('q');
 var express = require('express');
-var listOfRides = require('./getData');
+var listOfRidesData = require('./getData');
  
 
 module.exports = { 
 
-	checkRides : function  (response) 
+
+
+	checkRides : function  () 
 {
 	var response = [];
-	var listOfRides = [];
-  
+	var listOfRides = listOfRidesData.GetData() ;
+  console.log("list of rides is  = " +  listOfRides);
 
    for (i=0; i<listOfRides.length ;i++)
 	{
 		if (listOfRides[i].user_type == "passenger")  { 
-	   		checkRide({"Passenger": listOfRides[i] , "Rides" : listOfRides}, resolute)
-	   		{ 
+			var passengerAttribute = {"Passenger": listOfRides[i] , "Rides" : listOfRides};
+	   		var resolute = checkRide(passengerAttribute);
+	   		 console.log("resolute = " +  resolute);
 	   			if (resolute == true) 
 	   			{
 	   				response.push(listOfRides[i]);
 	   			}
 
-	   		};
+	   		
 		} 
 	}
  
+  return response;
 }
-
-,
-checkRide: function  (request, response) 
+}
+ function checkRide (request) 
 {
+	 console.log("passenger is  = " +  request);
 	if (request.Passenger.status_match == "no") {
      var rides = request.Rides;
-
+ console.log("passenger is  = " +  request.Passenger);
      for(j=0;j<rides.length; j++) {
      	if (rides[j].user_type== "Driver" 
      		&& rides[j].source== request.Passenger.source 
@@ -45,7 +49,10 @@ checkRide: function  (request, response)
 	 return false;
 }
 
-}
+
+
+
+
 
 
  
