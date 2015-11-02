@@ -124,6 +124,8 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
       var port = server.address().port;
 
       console.log(' [*] Listening at http://%s:%s', host, port);
+      
+      matchRides();
     });
   },
   function(err) {
@@ -133,7 +135,7 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
 
 function matchRides() {
 	  var minutes = 1;
-	  var interval = minutes * 60 * 1000;
+	  var interval = minutes * 10 * 1000;
 	 
 	  setInterval(function() {
 	  		
@@ -152,17 +154,18 @@ function matchRides() {
 	  			 	  
 	  			 	  console.log("passangerEmail = " + passangerEmail);
 	  			 	  var txt = "Thank you for using the amazing KdCar !!! we have a WINNER !!! You will be ride with Shai Hasan the KING on this Wednesday at 08:30 AM from Tel-Aviv base to Jerusalem :-). Have a nice ride!!!"; 
+	  			 	  var subject = "A new message from KdCar";
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = sendMail(passangerEmail, txt);
+	  			 	  	 var sendEmailResult = sendMail(passangerEmail, subjet, txt);
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
 	  			 	  	 	
 	  			 	  	 	 if(sendEmailResult)
 		  			 	  	 {
-		  			 	  	 	  markRideAsMatch(rideID);
+		  			 	  	 	  markRideAsMatch(matchResult.rideID);
 		  			 	  	 }
 	  			 	  	}
 	  			 	  }
@@ -188,4 +191,9 @@ function markRideAsMatch(rideID)
 function sendMail()
 {
 	return true;
+}
+
+function checkRides()
+{
+	 return { status : true, rideID : 1 };
 }
