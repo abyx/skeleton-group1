@@ -2,6 +2,7 @@ var Q = require('q');
 var express = require('express');
 var bodyParser = require('body-parser');
 var elasticsearch = require('elasticsearch');
+var mail = require('./mail');
 var _ = require('lodash');
 var app = express();
 
@@ -158,7 +159,7 @@ function matchRides() {
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = sendMail(passangerEmail, subjet, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subjet, txt);
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
