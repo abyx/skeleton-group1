@@ -160,7 +160,7 @@ function matchRides() {
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subjet, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, txt);
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
@@ -199,4 +199,3 @@ function checkRides()
 {
 	 return { status : true, rideID : 1 };
 }
->>>>>>> 4b96a12aeb1d0d1c3b1cbfca70fcf5fd19403dc4
