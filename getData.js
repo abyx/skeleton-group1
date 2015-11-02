@@ -1,7 +1,8 @@
 module.exports = {
 		GetData:function (){
 
-		return 
+		var arr = 
+		
 		
 [
 	{
@@ -10,7 +11,7 @@ module.exports = {
 	  "name": "Noa Ben",
 	  "date": "2/11/15",
 	  "time": "12:00:00",
-	  "source": "Herzelia",
+	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
 	  "status_match": "yes"
@@ -81,7 +82,9 @@ module.exports = {
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": "no"
 	}
-]
+]; 
+
+return arr;
 
 
 
