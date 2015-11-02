@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var elasticsearch = require('elasticsearch');
 var _ = require('lodash');
+var mailsender=require('./mail');
 var app = express();
 
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
@@ -130,3 +131,5 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
     process.exit(1);
   }
 );
+
+mailsender.sendmail('fredgeorge123@mail.com','test subject','test message');
