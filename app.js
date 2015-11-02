@@ -130,3 +130,62 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
     process.exit(1);
   }
 );
+
+function matchRides() {
+	  var minutes = 1;
+	  var interval = minutes * 60 * 1000;
+	 
+	  setInterval(function() {
+	  		
+	  		console.log("I am doing my 1 minutes check");
+	  		
+	  		var matchResult = checkRides();
+	  			
+	  		if(matchResult != null && matchResult != 'undefined')
+	  		{
+	  			console.log("matchResult.status = " +  matchResult.status);
+	  			
+	  			 if(matchResult.status)
+	  			 {
+	  			 	//get the email
+	  			 	  var passangerEmail = getPassangerEmailByID(1);
+	  			 	  
+	  			 	  console.log("passangerEmail = " + passangerEmail);
+	  			 	  var txt = "Thank you for using the amazing KdCar !!! we have a WINNER !!! You will be ride with Shai Hasan the KING on this Wednesday at 08:30 AM from Tel-Aviv base to Jerusalem :-). Have a nice ride!!!"; 
+	  			 	  
+	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
+	  			 	  {
+	  			 	  	 var sendEmailResult = sendMail(passangerEmail, txt);
+	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
+	  			 	  	 {
+	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
+	  			 	  	 	
+	  			 	  	 	 if(sendEmailResult)
+		  			 	  	 {
+		  			 	  	 	  markRideAsMatch(rideID);
+		  			 	  	 }
+	  			 	  	}
+	  			 	  }
+	  			 }
+	  		}	
+	  			
+	  		
+		}, interval);
+}
+
+function getPassangerEmailByID(passangerID)
+{
+	return "fredgeorge123@mail.com";
+}
+
+function markRideAsMatch(rideID)
+{
+	 //update the db with this ride as closed --> meaning we have match between passenger and driver/ride
+	 
+	 return true;	 
+}
+
+function sendMail()
+{
+	return true;
+}
