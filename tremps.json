@@ -1,6 +1,6 @@
 [
 	{
-	  "user_type" : "passenger"
+	  "user_type" : "passenger",
 	  "user_id" : "1",
 	  "name": "Noa Ben",
 	  "date": "2/11/15",
@@ -11,7 +11,7 @@
 	  "status_match": "yes"
 	},
 	{
-	  "user_type" : "Driver"
+	  "user_type" : "Driver",
 	  "user_id": "2",
 	  "name": "Miki Lev",
 	  "date": "2/11/15",
@@ -22,7 +22,7 @@
 	  "status_match": "no"
 	},
 	{
-	  "user_type" : "Driver"
+	  "user_type" : "Driver",
 	  "user_id": "2",
 	  "name": "Miki Lev",
 	  "date": "2/11/15",
@@ -33,7 +33,7 @@
 	  "status_match": "no"
 	},
 	{
-	  "user_type" : "Driver"
+	  "user_type" : "Driver",
 	  "user_id": "2",
 	  "name": "Miki Lev",
 	  "date": "4/11/15",
@@ -44,7 +44,7 @@
 	  "status_match": "no"
 	},
 	{
-	  "user_type" : "passenger"
+	  "user_type" : "passenger",
 	  "user_id": "3",
 	  "name": "Hen Shemesh",
 	  "date": "2/11/15",
@@ -55,7 +55,7 @@
 	  "status_match": "yes"
 	},
 	{
-	  "user_type" : "Driver"
+	  "user_type" : "Driver",
 	  "user_id": "4",
 	  "name": "danna jen",
 	  "date": "3/11/15",
@@ -66,7 +66,7 @@
 	  "status_match": "no"
 	},
 	{
-	  "user_type" : "passenger"
+	  "user_type" : "passenger",
 	  "user_id": "5",
 	  "name": "Miki Lev",
 	  "date": "2/11/15",
