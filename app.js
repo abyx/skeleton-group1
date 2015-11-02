@@ -198,7 +198,3 @@ function checkRides()
 {
 	 return { status : true, rideID : 1 };
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> e2ebf39eaf871c1aea3d345d867d5c25b3707143
