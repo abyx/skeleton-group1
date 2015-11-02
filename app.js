@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var elasticsearch = require('elasticsearch');
 var mail = require('./mail');
 var _ = require('lodash');
+var mailsender=require('./mail');
 var app = express();
 
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
@@ -134,6 +135,9 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
   }
 );
 
+<<<<<<< HEAD
+mailsender.sendmail('fredgeorge123@mail.com','test subject','test message');
+=======
 function matchRides() {
 	  var minutes = 1;
 	  var interval = minutes * 10 * 1000;
@@ -198,3 +202,4 @@ function checkRides()
 {
 	 return { status : true, rideID : 1 };
 }
+>>>>>>> 4b96a12aeb1d0d1c3b1cbfca70fcf5fd19403dc4
