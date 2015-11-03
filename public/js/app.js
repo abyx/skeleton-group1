@@ -31,6 +31,8 @@ var myModule = angular.module('app', ['ngRoute','ui.bootstrap', 'app.Repositorie
         $scope.dateOptions = {};
     });
 
+    
+
 
 angular.module('app').config(function($routeProvider) {
   $routeProvider
