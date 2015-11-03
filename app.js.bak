@@ -7,48 +7,19 @@ var _ = require('lodash');
 var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
-var listOfRidesData = require('./getData');
- 
-
 
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 
 app.use(express.static('public'));
-
 app.use(bodyParser.json());
 
 app.param('id', function(req, res, next) {
   next();
 });
 
-app.post('/getPassenger', function(request, response) {
-  response.send({passenger: {
-    "user_type" : "passenger",
-    "user_id":  Math.random(),
-    "name": "",
-    "date": "",
-    "time": "",
-    "source": "Tel-Aviv",
-    "destination": "",
-    "mail" : "",
-    "status_match": "no"
-  }});
-});
-
 app.get('/example', function(request, response) {
   response.send({success: true});
 });
-
-app.post('/updatetremp' , function (request, response) { 
-
-  console.log("begin update rides");
-
-  listOfRidesData.pushData(passenger);
-
-  console.log("end update rides");
-
-  response.send({success:true});
-})
 
 app.post('/example/:id', function(request, response) {
   console.log(request.body, request.params.id, 'query', request.query);
@@ -166,8 +137,7 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
 );
 
 function matchRides() {
-
-	  var hour = 8;
+	  var hour = 1;
 	  var interval = hour * 60 * 60 * 1000;
 	 
 	  setInterval(function() {
@@ -191,7 +161,7 @@ function matchRides() {
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, getHTML(txt));
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
@@ -228,18 +198,18 @@ function sendMail()
 	return true;
 }
 
- 
+<<<<<<< HEAD
+function getHTML(txt)
+{
+	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
+	 return html;
+}
 
+=======
  
 //function checkRides()
 //{
 //	 return { status : true, rideID : 1 };
 //}
  
- 
-function getHTML(txt)
-{
-	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
-	 return html;
-}
- 
+>>>>>>> e19ad1d9964dea81245749b5f258683d330ea8ad
