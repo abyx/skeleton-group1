@@ -137,11 +137,8 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
 );
 
 function matchRides() {
-<<<<<<< HEAD
+
 	  var hour = 8;
-=======
-	  var hour = 1;
->>>>>>> 03377cc1c2771573d955e6e24475b05faf5155bd
 	  var interval = hour * 60 * 60 * 1000;
 	 
 	  setInterval(function() {
