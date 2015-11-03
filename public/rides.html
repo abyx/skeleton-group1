@@ -17,30 +17,35 @@
  <tr>
 
  <td width="80%">   
-<div class="row">
+<div class="column">
     <div class="col-md-3">
-        <label>Name:<input class="form-control" type="text" ng-model="Rides.Rides.name" ></label>
-        <label>mail:<input class="form-control" type="text" ng-model="Rides.Rides.mail"  ></label>
+        <label>Name:<input class="form-control" type="text" ng-model="Rides.Ride.name" ></label>
+
      </div>
  </div>
-<div class="row" >
+<div class="column" >
      <div class="col-md-3">
         <label>Date:<input
             type="date"
             id="test"
             name="birthdate"
-            ng-model="Rides.Rides.date" 
+            ng-model="Rides.Ride.date" 
             popup="d MMM yyyy"
             options="dateOptions"
             opened="opened"
             custom-datepicker/></label>
-        <label>Time:<input class="form-control" type="text" ng-model="Rides.Rides.time"  ></label>
+        
     </div>
 </div>
-<div class="row">
+<div class="column">
     <div class="col-md-3">
-        <label>Source:<input class="form-control" type="text" ng-model="Rides.Rides.source" ></label>
-        <label>Destination:<input class="form-control" type="text" ng-model="Rides.Rides.destination" ></label>
+        <label>Time:<input class="form-control" type="text" ng-model="Rides.Ride.time"  ></label>
+    </div>
+</div>
+<div class="col">
+    <div class="col-md-3">
+        <label>Source:<input class="form-control" type="text" ng-model="Rides.Ride.source" ></label>
+        <label>Destination:<input class="form-control" type="text" ng-model="Rides.Ride.destination" ></label>
     </div>
 </div>
 </td>
@@ -61,12 +66,29 @@
         <p>... buttons!</p>
     </div> -->
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="Rides.buttonClicked()">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="Rides.buttonClicked()">Query Rides</button>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-2">
+         <label>Count Of Ride Alongs:<input class="form-control" type="text" ng-model="Rides.Rides.length" ></label>
     </div>
 </div>
 
 <div class="row">
-      <label ng-if="Rides.Rides.is_in_db">
+    <div class="col-md-4">
+        <ul>
+            <li ng-repeat="ride in Rides.Rides"> {{ ride.name + ', ' + ride.source + ' > ' + ride.destination + "  --  "+ ride.date + " ("+ride.time+")"  }}</li>
+        </ul>
+    </div>
+
+
+</div>
+
+<div class="row">
+      <label ng-if="Rides.Ride.is_in_db">
       	 <font color="Green"><h1>Your request is saved.</b></font>
       </label>
  </div

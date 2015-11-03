@@ -49,7 +49,7 @@ angular.module('app').config(function($routeProvider) {
     .when('/rides', {
       templateUrl: 'rides.html',
       controller: 'getRides',
-      controllerAs: 'ride'
+      controllerAs: 'Rides'
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',

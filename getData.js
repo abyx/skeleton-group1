@@ -12,7 +12,8 @@ var exportArr =
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
 	  "status_match": true,
-	  "is_in_db":true
+	  "is_in_db":true,
+	  "is_selected" : false
 	},
 	{
 	  "user_type" : "Driver",
@@ -24,7 +25,8 @@ var exportArr =
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
-	  "is_in_db":true
+	  "is_in_db":true,
+	  "is_selected" : false
 	},
 	{
 	  "user_type" : "Driver",
@@ -36,7 +38,8 @@ var exportArr =
 	  "destination": "Tel-Aviv",
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
-	  "is_in_db":true
+	  "is_in_db":true,
+	  "is_selected" : false
 	},
 	{
 	  "user_type" : "Driver",
@@ -48,7 +51,8 @@ var exportArr =
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
-	  "is_in_db":true
+	  "is_in_db":true,
+	  "is_selected" : false
 	},
 	{
 	  "user_type" : "passenger",
@@ -59,8 +63,9 @@ var exportArr =
 	  "source": "HEIFA",
 	  "destination": "TEL AVIV",
 	  "mail" : "HEN111@mail.com",
-	  "status_match": "yes",
-	  "is_in_db":true
+	  "status_match": true,
+	  "is_in_db":true,
+	  "is_selected" : false
 	},
 	{
 	  "user_type" : "Driver",
@@ -72,7 +77,8 @@ var exportArr =
 	  "destination": "HAIFA",
 	  "mail" : "danna555@mail.com",
 	  "status_match": false,
-	  "is_in_db":true
+	  "is_in_db":true,
+	  "is_selected" : false
 	},
 	{
 	  "user_type" : "passenger",
@@ -84,7 +90,8 @@ var exportArr =
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
-	  "is_in_db":true
+	  "is_in_db":true,
+	  "is_selected" : false
 
 	}
 ]; 
@@ -96,13 +103,23 @@ module.exports = {
 			return exportArr;
 		}
 		,
-		GetDataOfRides:function(name) {
-			
+		GetDataOfRides:function(name, source ,destination, date , time) {
+			console.log("in get data of rides ", name, source ,destination, date , time);
 			var retArr = [];
 			for (i=0;i<exportArr.length;i++) {
 				if (exportArr[i].user_type == "Driver" 
-					&& exportArr[i].name == name) {
+					&& 
+					(exportArr[i].name == name ||
+					 (exportArr[i].source == source &&
+					 exportArr[i].destination == destination &&
+					 exportArr[i].date == date &&
+					 exportArr[i].time == time )
+					 	)){ 
 					retArr.push(exportArr[i]);
+console.log("pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+				} else{
+					console.log("not pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+
 				}
 			}
 			return retArr;

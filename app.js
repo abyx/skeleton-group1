@@ -56,12 +56,20 @@ app.post('/getDriver', function(request, response) {
 app.post('/getRides', function(request, response) {
 
 var name = "undefined";
+var source = "undefined";
+var destination = "undefined";
+var date = "undefined";
+var time = "undefined";
   if (request.body != "undefined") 
   {
+    console.log("request body is " , request.body);
       name = request.body.name;
-      console.log("name received is : ",name);
+      source = request.body.source;
+      destination = request.body.destination;
+      date = request.body.date;
+      time = request.body.time;
  }
-  var rides = listOfRidesData.GetDataOfRides(name);
+  var rides = listOfRidesData.GetDataOfRides(name, source ,destination, date , time);
   response.send({Rides:rides});
 });
 

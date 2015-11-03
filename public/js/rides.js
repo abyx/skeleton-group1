@@ -1,15 +1,20 @@
 myModule.service('myRidesService', function($http) {
-    
-    this.getOptions = function(nameParam) {
+   
+ 
+
+    this.getOptions = function(nameParam,sourceParam,destinationParam,dateParam,timeParam) {
         return $http({
             "method": "post",
             "url": 'http://localhost:3000/getRides', 
-            "data": {
-                options: [{name: nameParam}]
-            }
-        });
-    };
-});
+            "data": 
+                {name: nameParam,
+                  source:sourceParam ,destination:destinationParam, 
+                  date:dateParam , time:timeParam}
+            });
+    
+      };
+
+    });
 
 angular.module('app').controller('getRides', function($scope, myRidesService, initRides, RidesRepository) {
     var self = this;
@@ -19,11 +24,13 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        initRides('getRides', [myRidesService.getOptions('Hen Shemesh')], function(result) {
+        initRides('getRides', [myRidesService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
         console.log("Rides is " ,  result);
         $scope.options = result[0].data.Rides;
 
-        this.passenger = result[0].data.Rides;
+        self.Ride = { name : "", source :"" , destination : "", date:"", time:""};
+        self.Rides = result[0].data.Rides;
+
         $scope.selectedOption = 0;
     });
     
@@ -62,10 +69,49 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
 				console.log("in Rides.post. in catch handler scope");
 			});
 	}
+
+  self.get = function(RidesRepository, nameParam,sourceParam,destinationParam,dateParam,timeParam,Rides)
+  {       
+    console.log("in Rides.get BEGAIN. RidesRepository= " + RidesRepository );
+     
+      RidesRepository.get(self.Ride.name,
+        self.Ride.source,
+        self.Ride.destination,
+        self.Ride.date,
+        self.Ride.time,self.Rides).then(
+        function(result)
+        {
+          if(result != null && result != "undefined")
+          {
+            if(result.status == true)
+            {
+              console.log("in Rides.get. in success handler scope. result is true");
+            }
+          }
+        },
+        function(result)
+        {
+          if(result != null && result != "undefined")
+          {
+            console.log("in Rides.get. in error handler scope");
+          }
+        }
+      )
+      .catch(function(result)
+      {
+        console.log("in Rides.get. in catch handler scope");
+      });
+  }
 	
 	  self.buttonClicked = function()
 		{
-			 RidesRepository.post([self.Rides]);
+
+      console.log(" buttonClicked ");
+			 RidesRepository.get(self.Ride.name,
+        self.Ride.source,
+        self.Ride.destination,
+        self.Ride.date,
+        self.Ride.time,self.Rides);
 		}
    
     initController();
@@ -98,6 +144,51 @@ angular.module('app.Repositories').factory('RidesRepository', function($http) {
 		 						alert ('Error');
 		   				}   						
 						);
+        },
+        get: function(nameParam,sourceParam,destinationParam,dateParam,timeParam,Rides) {
+            $http.post('http://localhost:3000/getRides',   {name: nameParam,
+                  source:sourceParam ,destination:destinationParam, 
+                  date:dateParam , time:timeParam}).then(  
+              function(response)  
+              { 
+                
+                  console.log('in RidesRepository.get. got response=', response.data);
+                if (response.data.Rides != null && response.data.Rides != "undefined") {
+                
+                while(Rides.length > 0) {
+                     Rides.pop();
+                }
+                   
+                  for (i= 0; i< response.data.Rides.length; i++) 
+                  {
+                      console.log('in RidesRepository.get. updating...', response.data);
+                   response.data.Rides[i].is_selected = false;
+                    Rides.push(response.data.Rides[i]);
+                     
+                  }  
+
+                }
+             
+          
+              },
+          
+              function(response)
+              {
+                console.log('in RidesRepository.get. got response=', response.data);
+                if (response.data.Rides != null && response.data.Rides != "undefined") {
+                    while(self.Rides.length > 0) {
+                     self.Rides.pop();
+                }
+                for (i= 0; i< response.data.Rides.length; i++) 
+                {
+                  response.data.Rides[i].is_selected = false;
+                   self.Rides.push(response.data.Rides[i]);
+                }
+                }
+                alert ('Error');
+
+              }               
+            );
         }
     };
 
@@ -163,3 +254,4 @@ myModule.factory('initRides', function ($q, $rootScope, $browser) {
  
   return  initRides;
 });
+
