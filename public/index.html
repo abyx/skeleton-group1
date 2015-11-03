@@ -31,5 +31,48 @@
         </header>
 
         <div class="container" ng-view></div>
+
+
+        <form name="myform">
+        <label>
+            Birth Date
+            <span style="color:red" ng-show="myform.birthdate.$error.pattern">(1 Jan 2013)</span>
+        </label>
+        <input
+            type="date"
+            id="test"
+            name="birthdate"
+            ng-model="birthDate"
+            popup="d MMM yyyy"
+            options="dateOptions"
+            opened="opened"
+            custom-datepicker/>
+    </form>
+    <hr/>
+
+    <pre>
+    birthDate = {{birthDate}}
+    </pre>
+    
+    <script type="text/ng-template" id="custom-datepicker.html">
+        <div class="form-inline enhanced-datepicker">
+            <label>
+                <input
+                    type="text"
+                    id="{{id}}"
+                    name="{{name}}"
+                    ng-model="ngModel"
+                    datepicker-popup="{{popup}}"
+                    datepicker-options="{{options}}"
+                    date-disabled="{{dateDisabled}}"
+                    min="{{min}}"
+                    max="{{max}}"
+                    open="opened"
+                    ng-pattern="/^(?:[1-9]|1\d|2\d|3[0-1]) (?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec) (?:1|2)(?:\d{3})$/gim"/>
+                <span class="btn"><i class="icon-calendar"></i></span>
+            </label>
+        </div>
+    </script>
     </body>
+
 </html>
