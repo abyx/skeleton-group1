@@ -21,6 +21,11 @@ app.get('/example', function(request, response) {
   response.send({success: true});
 });
 
+app.post('/PassengerRequest/', function(request, response) {
+  console.log(request.body);
+  response.sendStatus(200);
+});
+
 app.post('/example/:id', function(request, response) {
   console.log(request.body, request.params.id, 'query', request.query);
   response.sendStatus(200);
@@ -203,4 +208,10 @@ function getHTML(txt)
 {
 	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
 	 return html;
+}
+
+function SavePost(list)
+{
+  var res = {status:"success"};
+  return res;
 }
