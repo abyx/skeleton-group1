@@ -1,7 +1,20 @@
 var exportArr = 
-		
+	
 		
 [
+/*
+{
+	  "user_type" : "Driver",
+	  "user_id" : "10",
+	  "name": "Noa Ben Driver",
+	  "date": "17/11/15",
+	  "time": "12:00:00",
+	  "source": "Tel-Aviv",
+	  "destination": "HAIFA",
+	  "mail" : "noa_ben@mail.com",
+	  "status_match": false,
+	  "is_in_db":true
+	},
 	{
 	  "user_type" : "passenger",
 	  "user_id" : "1",
@@ -11,7 +24,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
-	  "status_match": "yes"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -22,7 +36,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -33,7 +48,8 @@ var exportArr =
 	  "source": "HEIFA",
 	  "destination": "Tel-Aviv",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -44,7 +60,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "passenger",
@@ -55,7 +72,8 @@ var exportArr =
 	  "source": "HEIFA",
 	  "destination": "TEL AVIV",
 	  "mail" : "HEN111@mail.com",
-	  "status_match": "yes"
+	  "status_match": "yes",
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -66,19 +84,23 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "danna555@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "passenger",
 	  "user_id": "5",
 	  "name": "Miki Lev",
-	  "date": "12/11/15",
+	  "date": "2/11/15",
 	  "time": "10:00:00",
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
+
 	}
+	*/
 ]; 
 
 
