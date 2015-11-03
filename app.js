@@ -39,7 +39,7 @@ app.get('/example', function(request, response) {
   response.send({success: true});
 });
 
-<<<<<<< HEAD
+
 app.post('/updatetremp' , function (request, response) { 
 
   console.log("begin update rides");
@@ -50,12 +50,12 @@ app.post('/updatetremp' , function (request, response) {
 
   response.send({success:true});
 })
-=======
+
 app.post('/PassengerRequest/', function(request, response) {
   console.log(request.body);
   response.sendStatus(200);
 });
->>>>>>> ebfe1d0a184625f365040928ddc42485808c663e
+
 
 app.post('/example/:id', function(request, response) {
   console.log(request.body, request.params.id, 'query', request.query);
