@@ -249,13 +249,9 @@ function getHTML(txt)
 	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
 	 return html;
 }
-<<<<<<< HEAD
- 
-=======
 
 function SavePost(list)
 {
   var res = {status:"success"};
   return res;
 }
->>>>>>> ebfe1d0a184625f365040928ddc42485808c663e
