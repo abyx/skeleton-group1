@@ -46,6 +46,11 @@ angular.module('app').config(function($routeProvider) {
       controller: 'getDriver',
       controllerAs: 'driver'
     })
+    .when('/rides', {
+      templateUrl: 'rides.html',
+      controller: 'getRides',
+      controllerAs: 'ride'
+    })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',
       controller: 'getPassenger',

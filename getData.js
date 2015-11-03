@@ -96,6 +96,19 @@ module.exports = {
 			return exportArr;
 		}
 		,
+		GetDataOfRides:function(name) {
+			
+			var retArr = [];
+			for (i=0;i<exportArr.length;i++) {
+				if (exportArr[i].user_type == "Driver" 
+					&& exportArr[i].name == name) {
+					retArr.push(exportArr[i]);
+				}
+			}
+			return retArr;
+
+		}
+		,
 		pushData:function (trempItem)
 		{
 			exportArr.push(trempItem);

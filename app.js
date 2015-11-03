@@ -52,6 +52,20 @@ app.post('/getDriver', function(request, response) {
 });
 
 
+
+app.post('/getRides', function(request, response) {
+
+var name = "undefined";
+  if (request.body != "undefined") 
+  {
+      name = request.body.name;
+      console.log("name received is : ",name);
+ }
+  var rides = listOfRidesData.GetDataOfRides(name);
+  response.send({Rides:rides});
+});
+
+
 app.get('/example', function(request, response) {
   response.send({success: true});
 });
