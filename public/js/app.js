@@ -41,10 +41,10 @@ angular.module('app').config(function($routeProvider) {
       controller: 'getPassenger',
       controllerAs: 'passanger'
     })
-    .when('/view1/:argument?', {
-      templateUrl: 'view1.html',
-      controller: 'View1Ctrl',
-      controllerAs: 'view1'
+    .when('/driver', {
+      templateUrl: 'driver.html',
+      controller: 'getDriver',
+      controllerAs: 'driver'
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',
@@ -191,6 +191,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	  self.buttonClicked = function()
 		{
 			 PassangerRepository.post([self.passenger]);
+			 
 		}
    
     initController();
@@ -206,27 +207,24 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
    						{	
    							  console.log('in PassengerRepository.post. got response=',	response.data);
 
-        for (i= 0; i< passengerList.length; i++) 
-            {
-              passengerList[i].is_in_db = true;
-           
-             }
-
-   								alert ('finished');
-   						},
-   						function(response)
-   						{
-   							console.log('in PassengerRepository.post. got response=',	response.data);
-           
-            for (i= 0; i< passengerList.length; i++) 
-            {
-              passengerList[i].is_in_db = false;
-           
-             }
- 
-   								alert ('Error');
-   						}   						
-			);
+					        for (i= 0; i< passengerList.length; i++) 
+					        {
+					          passengerList[i].is_in_db = true;
+					           
+					        }
+					
+							},
+					
+					   	function(response)
+		   				{
+		  					console.log('in PassengerRepository.post. got response=',	response.data);
+		            for (i= 0; i< passengerList.length; i++) 
+		            {
+		              passengerList[i].is_in_db = false;
+		            }
+		 						alert ('Error');
+		   				}   						
+						);
         }
     };
 
