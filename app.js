@@ -39,20 +39,17 @@ app.get('/example', function(request, response) {
   response.send({success: true});
 });
 
+ 
 
-app.post('/updatetremp' , function (request, response) { 
+app.post('/PassengerRequest/', function(request, response) {
+  console.log(request.body);
 
-  console.log("begin update rides");
+ console.log("begin update rides");
 
   listOfRidesData.pushData(passenger);
 
   console.log("end update rides");
 
-  response.send({success:true});
-})
-
-app.post('/PassengerRequest/', function(request, response) {
-  console.log(request.body);
   response.sendStatus(200);
 });
 
