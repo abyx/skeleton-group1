@@ -1,7 +1,20 @@
 var exportArr = 
-		
+	
 		
 [
+/*
+{
+	  "user_type" : "Driver",
+	  "user_id" : "10",
+	  "name": "Noa Ben Driver",
+	  "date": "17/11/15",
+	  "time": "12:00:00",
+	  "source": "Tel-Aviv",
+	  "destination": "HAIFA",
+	  "mail" : "noa_ben@mail.com",
+	  "status_match": false,
+	  "is_in_db":true
+	},
 	{
 	  "user_type" : "passenger",
 	  "user_id" : "1",
@@ -11,7 +24,7 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
-	  "status_match": true,
+	  "status_match": false,
 	  "is_in_db":true
 	},
 	{
@@ -87,6 +100,7 @@ var exportArr =
 	  "is_in_db":true
 
 	}
+	*/
 ]; 
 
 

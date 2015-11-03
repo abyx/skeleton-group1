@@ -26,11 +26,11 @@ app.post('/getPassenger', function(request, response) {
     "user_type" : "passenger",
     "user_id":  Math.random(),
     "name": "passenger",
-    "date": "",
+    "date": new Date().toJSON().slice(0,10),
     "time": "08:00",
     "source": "Tel-Aviv",
     "destination": "Jerusalem",
-    "mail" : "fredgeorge123@mail.com",
+    "mail" : "group1@mailinator.com ", //"fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false
   }});
@@ -41,7 +41,7 @@ app.post('/getDriver', function(request, response) {
     "user_type" : "Driver",
     "user_id":  Math.random(),
     "name": "driver",
-    "date": "",
+    "date": new Date().toJSON().slice(0,10),
     "time": "08:00",
     "source": "Tel-Aviv",
     "destination": "Jerusalem",
@@ -63,8 +63,12 @@ app.post('/PassengerRequest/', function(request, response) {
 
  console.log("begin update passenger");
 
-  var passenger=request.body;
-  listOfRidesData.pushData(passenger);
+  var passengers=request.body;
+  
+  for (i=0 ; i<passengers.length ; i++) 
+  {
+    listOfRidesData.pushData(passengers[i]);
+  }
 
   console.log("end update passenger");
 
@@ -76,8 +80,11 @@ app.post('/DriverRequest/', function(request, response) {
 
  console.log("begin update rides");
 
-  var driver=request.body;
-  listOfRidesData.pushData(driver);
+  var drivers=request.body;
+  for (i=0 ; i<drivers.length ; i++) 
+  {
+    listOfRidesData.pushData(drivers[i]);
+  } 
 
   console.log("end update rides");
 
@@ -203,33 +210,34 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
 function matchRides() {
 
 	  var hour = 1;
-	  var interval = hour * 60 * 60 * 1000;
+	  var interval = hour * 1 * 5 * 1000;
 	 
 	  setInterval(function() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
 	  		
-	  		var passengerList = checkRides.checkRides();
+	  		var ridesList = checkRides.checkRides();
 	  			
-	  		if(passengerList != null && passengerList != 'undefined')
+	  		if(ridesList != null && ridesList != 'undefined')
 	  		{
-	  			console.log("passengerList = " +  passengerList);
+	  			console.log("ridesList = ",  ridesList);
 	  			
-	  			 for(i = 0; i < passengerList.length; i++)
+	  			 for(i = 0; i < ridesList.length; i++)
 	  			 {
-	  			 	//get the email
-	  			 	  var passangerEmail = getPassangerEmailByID(passengerList[i]);
-	  			 	  
-	  			 	  console.log("passangerEmail = " + passangerEmail);
-	  			 	  var txt = "Thank you for using the amazing KdCar !!! we have a WINNER !!! You will be ride with Shai Hasan the KING on this Wednesday at 08:30 AM from Tel-Aviv base to Jerusalem :-). Have a nice ride!!!"; 
-	  			 	  var subject = "A new message from KdCar";
+	  			 	try
+	  			 	{
+	  			 	  //get the email
+	  			 	  var passangerEmail = getPassangerEmail(ridesList[i]);
+	  			 	  var body = getEmailBody(ridesList[i]);
+	  			 	  var subject = getEmailSubject(ridesList[i]);
+	  			 	 
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, body);
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
-	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
+	  			 	  	 	 console.log("sendEmailResult = ", sendEmailResult);
 	  			 	  	 	
 	  			 	  	 	 if(sendEmailResult)
 		  			 	  	 {
@@ -237,6 +245,11 @@ function matchRides() {
 		  			 	  	 }
 	  			 	  	}
 	  			 	  }
+	  			 	}
+	  			 	catch(err)
+	  			 	{
+	  			 		console.log("error = " + err);
+	  			 	}
 	  			 }
 	  		}	
 	  			
@@ -244,11 +257,40 @@ function matchRides() {
 		}, interval);
 }
 
-function getPassangerEmailByID(passanger)
+function getPassangerEmail(ride)
 {
-	var email = passanger.mail;
-	console.log("email = " + email + ". but sending to fredgeorge123@mail.com");
-	return "fredgeorge123@mail.com";
+	var email = ride.passenger.mail;
+	console.log("Email Address = " + email);
+	return email;
+}
+
+function getEmailBody(ride)
+{
+	var body =  "Thank you for using the amazing KdCar !!! we have a WINNER !!! You will be ride with " + getDriverName(ride) + getRideDetials(ride) + " :-). Have a nice ride!!!"; 
+	console.log("Email body = " + body);
+	return body;
+}
+
+function getDriverName(ride)
+{
+	var name = ride.driver.name;
+	return name;
+}
+
+function getRideDetials(ride)
+{
+	var date = ride.driver.date;
+	var time = ride.driver.time;
+	var from = ride.driver.source;
+	var to = ride.driver.destination;
+	return " on " + date + " at " + time + " from " + from + " to " + to 
+}
+
+function getEmailSubject(ride)
+{
+	var subject =  "A new message from KdCar [rideId = " + ride.driver.user_id + "] ";
+	console.log("Email subject = " + subject);
+	return subject;
 }
 
 function markRideAsMatch(rideID)
@@ -262,14 +304,6 @@ function sendMail()
 {
 	return true;
 }
-
- 
-
- 
-//function checkRides()
-//{
-//	 return { status : true, rideID : 1 };
-//}
  
  
 function getHTML(txt)
