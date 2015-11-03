@@ -161,7 +161,7 @@ function matchRides() {
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, getHTML(txt));
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
@@ -198,7 +198,9 @@ function sendMail()
 	return true;
 }
 
-//function checkRides()
-//{
-//	 return { status : true, rideID : 1 };
-//}
+function getHTML(txt)
+{
+	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
+	 return html;
+}
+

@@ -27,40 +27,16 @@ function getPassengerModel()
 
 
 angular.module('app').controller('PassangerCtrl',
-	
-	init : function()
-	{
-		var	self	=	this;
-	 	self.passenger=	getPassengerModel();
-	 	return self.passenger;
-	},
-	
-	post: function(PassengerRepository , passengerList)
+	function(PassengerRepository)
 	{				
-		
-		  PassengerRepository.post(self.passengerList).then(
-				function(result)
-				{
-					if(result != null && result != "undefined")
-					{
-						if(result.status == true)
-						{
-							console.log("in passanger.post. in success handler scope. result is true");
-						}
-					}
-				},
-				function(result)
-				{
-					if(result != null && result != "undefined")
-					{
-						console.log("in passanger.post. in error handler scope");
-					}
-				}
-			)
-			.catch(function(result)
+		var	self	=	this;
+	 	self.passengerList	=	getPassengerModel();
+		PassengerRepository.post(self.passengerList).then(
+			function(result)
 			{
-				console.log("in passanger.post. in catch handler scope");
-			});
+			}
+			function
+		);	
 	}
 );
 
@@ -71,7 +47,7 @@ angular.module('app').factory('PassengerRepository',	function($q)
 	{	
 		post:	function()
 			 	  {	
-			 	 	   return	$q.when( { status: true } );
+			 	 	   return	$q.when( { status: success } );
 		      }
 	};
 });
