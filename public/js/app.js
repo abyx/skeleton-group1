@@ -130,7 +130,9 @@ myModule.service('myService', function($http) {
 });
 
 myModule.controller('getPassenger', function($scope, myService, init) {
-    
+    var self = this;
+   
+   	console.log("in passanger. controller  BEGAIN.");
     function initController() {
           $scope.selectedOption = null;
           $scope.options = [];
@@ -178,6 +180,12 @@ myModule.controller('getPassenger', function($scope, myService, init) {
 				console.log("in passanger.post. in catch handler scope");
 			});
 	}
+	
+	  self.buttonClicked = function(PassengerRepository)
+		{
+			 console.log("in buttonClicked !!!");
+		   PassengerRepository.moshe(/*[self.passenger]*/);
+		}
    
     initController();
 	
@@ -185,14 +193,17 @@ myModule.controller('getPassenger', function($scope, myService, init) {
 
 angular.module('app').factory('PassangerRepository', function($q) {
 	return {
-		post: function() {
-			
-			$http.post('/some/url',	passengerList).then(	
+		moshe: function(/*passengerList*/) {
+			console.log("in PassangerRepository.post !!!!!");
+			/*
+			$http.post('http://localhost:3000/PassengerRequest',	passengerList).then(	
    						function(response)	
    						{	
    							console.log('in PassengerRepository.post. got response=',	response.data);
+   								alert ('finished');
    						}
 			);
+			*/
 		}
 	};
 });
