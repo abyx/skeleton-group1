@@ -46,6 +46,7 @@ app.post('/PassengerRequest/', function(request, response) {
 
  console.log("begin update rides");
 
+  var passenger=request.body;
   listOfRidesData.pushData(passenger);
 
   console.log("end update rides");
