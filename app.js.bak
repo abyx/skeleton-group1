@@ -161,7 +161,7 @@ function matchRides() {
 	  			 	  
 	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
 	  			 	  {
-	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, txt);
+	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, getHTML(txt));
 	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
 	  			 	  	 {
 	  			 	  	 	 console.log("sendEmailResult = " + sendEmailResult);
@@ -198,8 +198,18 @@ function sendMail()
 	return true;
 }
 
+<<<<<<< HEAD
 function getHTML(txt)
 {
 	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
 	 return html;
 }
+
+=======
+ 
+//function checkRides()
+//{
+//	 return { status : true, rideID : 1 };
+//}
+ 
+>>>>>>> e19ad1d9964dea81245749b5f258683d330ea8ad
