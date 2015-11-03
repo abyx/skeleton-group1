@@ -36,6 +36,22 @@ app.post('/getPassenger', function(request, response) {
   }});
 });
 
+app.post('/getDriver', function(request, response) {
+  response.send({driver: {
+    "user_type" : "Driver",
+    "user_id":  Math.random(),
+    "name": "",
+    "date": "",
+    "time": "",
+    "source": "Tel-Aviv",
+    "destination": "",
+    "mail" : "",
+    "status_match": false,
+    "is_in_db":false
+  }});
+});
+
+
 app.get('/example', function(request, response) {
   response.send({success: true});
 });
@@ -45,10 +61,23 @@ app.get('/example', function(request, response) {
 app.post('/PassengerRequest/', function(request, response) {
   console.log(request.body);
 
- console.log("begin update rides");
+ console.log("begin update passenger");
 
   var passenger=request.body;
   listOfRidesData.pushData(passenger);
+
+  console.log("end update passenger");
+
+  response.sendStatus(200);
+});
+
+app.post('/DriverRequest/', function(request, response) {
+  console.log(request.body);
+
+ console.log("begin update rides");
+
+  var driver=request.body;
+  listOfRidesData.pushData(driver);
 
   console.log("end update rides");
 

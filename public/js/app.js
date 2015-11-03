@@ -195,6 +195,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	
 });
 
+
 angular.module('app.Repositories').factory('PassangerRepository', function($http) {
 	  return {
         post: function(passengerList) {
@@ -214,8 +215,6 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
    						function(response)
    						{
    							console.log('in PassengerRepository.post. got response=',	response.data);
-                
-         
            
             for (i= 0; i< passengerList.length; i++) 
             {
