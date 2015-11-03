@@ -51,18 +51,27 @@ function getPassengerModel()
 }
 
 
-angular.module('app').controller('PassangerCtrl',
-	
-	init : function()
+angular.module('app').controller('PassangerCtrl', 
+
+	function init () 
 	{
+
+		console.log("in passanger.init BEGAIN");
+		
 		var	self	=	this;
 	 	self.passenger=	getPassengerModel();
+	 	
+	 	console.log("in passanger.init END. Returnning passenger=" + passenger);
+	 	
 	 	return self.passenger;
-	},
+	}
 	
-	post: function(PassengerRepository , passengerList)
+	/*
+	function post (PassengerRepository , passengerList)
 	{				
-		
+		 var	self	=	this;
+		console.log("in passanger.post BEGAIN. PassengerRepository= " + PassengerRepository + ", passengerList= " + passengerList);
+		 
 		  PassengerRepository.post(self.passengerList).then(
 				function(result)
 				{
@@ -86,21 +95,34 @@ angular.module('app').controller('PassangerCtrl',
 			{
 				console.log("in passanger.post. in catch handler scope");
 			});
+			
 	}
+	*/
 );
 
-
+/*
 angular.module('app').factory('PassengerRepository',	function($q)	
 {	
 	return	
 	{	
-		post:	function()
+		post:	function(passengerList)
 			 	  {	
 			 	 	   return	$q.when( { status: true } );
+			 	 	   
+			 	 	   /*$http.post('/some/url',	passengerList).then(	
+			 	 	   						function(response)	
+			 	 	   						{	
+			 	 	   							console.log('in PassengerRepository.post. got response=',	response.data);
+			 	 	   						}
+ 						);*/
+ 						/*
 		      }
 	};
 });
-=======
+
+*/
+
+
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dialog","ui.bootstrap.dropdownToggle","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
 angular.module("ui.bootstrap.tpls", ["template/accordion/accordion-group.html","template/accordion/accordion.html","template/alert/alert.html","template/carousel/carousel.html","template/carousel/slide.html","template/datepicker/datepicker.html","template/datepicker/popup.html","template/dialog/message.html","template/pagination/pager.html","template/pagination/pagination.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/popover/popover.html","template/progressbar/bar.html","template/progressbar/progress.html","template/rating/rating.html","template/tabs/tab.html","template/tabs/tabset-titles.html","template/tabs/tabset.html","template/timepicker/timepicker.html","template/typeahead/typeahead-match.html","template/typeahead/typeahead-popup.html"]);
 angular.module('ui.bootstrap.transition', [])
@@ -3593,4 +3615,3 @@ angular.module("template/typeahead/typeahead.html", []).run(["$templateCache", f
     "    </li>\n" +
     "</ul>");
 }]);
->>>>>>> e19ad1d9964dea81245749b5f258683d330ea8ad
