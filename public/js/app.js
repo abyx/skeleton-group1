@@ -31,6 +31,8 @@ var myModule = angular.module('app', ['ngRoute','ui.bootstrap', 'app.Repositorie
         $scope.dateOptions = {};
     });
 
+    
+
 
 angular.module('app').config(function($routeProvider) {
   $routeProvider
@@ -43,6 +45,11 @@ angular.module('app').config(function($routeProvider) {
       templateUrl: 'driver.html',
       controller: 'getDriver',
       controllerAs: 'driver'
+    })
+    .when('/rides', {
+      templateUrl: 'rides.html',
+      controller: 'getRides',
+      controllerAs: 'Rides'
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',
