@@ -11,7 +11,7 @@ myModule.service('myDriverService', function($http) {
     };
 });
 
-angular.module('app').controller('getDriver', function($scope, myDriverService, init, DriverRepository) {
+angular.module('app').controller('getDriver', function($scope, myDriverService, initDriver, DriverRepository) {
     var self = this;
    
    	console.log("in driver. controller  BEGAIN.");
@@ -19,7 +19,7 @@ angular.module('app').controller('getDriver', function($scope, myDriverService, 
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        init('getDriver', [myDriverService.getOptions()], function(result) {
+        initDriver('getDriver', [myDriverService.getOptions()], function(result) {
         console.log("driver is " ,  result);
         $scope.options = result[0].data.driver;
 
@@ -91,3 +91,64 @@ angular.module('app.Repositories').factory('DriverRepository', function($http) {
     };
 
 }); 
+
+myModule.factory('initDriver', function ($q, $rootScope, $browser) {
+ 
+  var initFunctions = [
+    'getDriver'
+  ];
+  var registeredInitFunctions = {};
+  var initialized = false;
+ 
+  var initApplication = function () {
+    var getDriver = registeredInitFunctions['getDriver'];
+ 
+    var broadcastAppInitialized = function () {
+      $browser.defer(function () {
+        initialized = true;
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast('appInitialized');
+        });
+      });
+    };
+    getDriver.initDriver()
+      .then(broadcastAppInitialized);
+  };
+ 
+  $rootScope.$on('$routeChangeStart', function () {
+    registeredInitFunctions = {};
+    initialized = false;
+  });
+ 
+  var initAppWhenReady = function () {
+      initApplication();
+    
+  };
+ 
+  var initDriver = function (name, dependencies, initCallback) {
+    registeredInitFunctions[name] = {
+      initDriver: function () {
+        var internalDependencies = $q.all(dependencies);
+        return internalDependencies.then(initCallback);
+      }};
+    initAppWhenReady();
+  };
+ 
+    initDriver.watchAfterInit = function (scope, expression, listener, deepEqual) {
+      scope.$watch(expression, function (newValue, oldValue, listenerScope) {
+        if (initialized) {
+          listener(newValue, oldValue, listenerScope);
+        }
+      }, deepEqual);
+    };
+
+    initDriver.onAfterInit = function (scope, event, listener) {
+      scope.$on(event, function (event) {
+        if (initialized) {
+          listener(event);
+        }
+      });
+    };
+ 
+  return  initDriver;
+});

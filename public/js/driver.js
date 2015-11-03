@@ -19,7 +19,7 @@ angular.module('app').controller('getDriver', function($scope, myDriverService, 
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        init('getDriver', [myDriverService.getOptions()], function(result) {
+        initDriver('getDriver', [myDriverService.getOptions()], function(result) {
         console.log("driver is " ,  result);
         $scope.options = result[0].data.driver;
 
@@ -79,14 +79,25 @@ angular.module('app.Repositories').factory('DriverRepository', function($http) {
    						function(response)	
    						{	
    							  console.log('in DriverRepository.post. got response=',	response.data);
-   								alert ('finished');
-   						},
-   						function(response)
-   						{
-   							console.log('in DriverRepository.post. got response=',	response.data);
-   								alert ('Error');
-   						}   						
-			);
+
+					        for (i= 0; i< driverList.length; i++) 
+					        {
+					          driverList[i].is_in_db = true;
+					           
+					        }
+					
+							},
+					
+					   	function(response)
+		   				{
+		  					console.log('in DriverRepository.post. got response=',	response.data);
+		            for (i= 0; i< driverList.length; i++) 
+		            {
+		              driverList[i].is_in_db = false;
+		            }
+		 						alert ('Error');
+		   				}   						
+						);
         }
     };
 

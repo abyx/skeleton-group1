@@ -61,8 +61,13 @@
         <p>... buttons!</p>
     </div> -->
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="getDriver.buttonClicked()">Save</button>
-        <label >בקשתך התקבלה בהצלחה</label>
+        <button type="button" class="btn btn-primary" ng-click="driver.buttonClicked()">Save</button>
     </div>
 </div>
+
+<div class="row">
+      <label ng-if="passanger.passenger.is_in_db">
+      	 <font color="Green"><h1>Your request is saved.</b></font>
+      </label>
+ </div
 

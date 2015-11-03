@@ -189,6 +189,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	  self.buttonClicked = function()
 		{
 			 PassangerRepository.post([self.passenger]);
+			 
 		}
    
     initController();
@@ -204,27 +205,24 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
    						{	
    							  console.log('in PassengerRepository.post. got response=',	response.data);
 
-        for (i= 0; i< passengerList.length; i++) 
-            {
-              passengerList[i].is_in_db = true;
-           
-             }
-
-   								alert ('finished');
-   						},
-   						function(response)
-   						{
-   							console.log('in PassengerRepository.post. got response=',	response.data);
-           
-            for (i= 0; i< passengerList.length; i++) 
-            {
-              passengerList[i].is_in_db = false;
-           
-             }
- 
-   								alert ('Error');
-   						}   						
-			);
+					        for (i= 0; i< passengerList.length; i++) 
+					        {
+					          passengerList[i].is_in_db = true;
+					           
+					        }
+					
+							},
+					
+					   	function(response)
+		   				{
+		  					console.log('in PassengerRepository.post. got response=',	response.data);
+		            for (i= 0; i< passengerList.length; i++) 
+		            {
+		              passengerList[i].is_in_db = false;
+		            }
+		 						alert ('Error');
+		   				}   						
+						);
         }
     };
 

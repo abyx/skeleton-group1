@@ -39,7 +39,7 @@ angular.module('app').config(function($routeProvider) {
       controller: 'getPassenger',
       controllerAs: 'passanger'
     })
-    .when('/driver/:argument?', {
+    .when('/driver', {
       templateUrl: 'driver.html',
       controller: 'getDriver',
       controllerAs: 'driver'
@@ -165,6 +165,8 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 							console.log("in passanger.post. in success handler scope. result is true");
 						}
 					}
+
+         
 				},
 				function(result)
 				{
@@ -172,11 +174,15 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 					{
 						console.log("in passanger.post. in error handler scope");
 					}
+         
+    
 				}
 			)
 			.catch(function(result)
 			{
 				console.log("in passanger.post. in catch handler scope");
+      
+      
 			});
 	}
 	
@@ -189,6 +195,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	
 });
 
+
 angular.module('app.Repositories').factory('PassangerRepository', function($http) {
 	  return {
         post: function(passengerList) {
@@ -196,14 +203,25 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
    						function(response)	
    						{	
    							  console.log('in PassengerRepository.post. got response=',	response.data);
-   								alert ('finished');
-   						},
-   						function(response)
-   						{
-   							console.log('in PassengerRepository.post. got response=',	response.data);
-   								alert ('Error');
-   						}   						
-			);
+
+					        for (i= 0; i< passengerList.length; i++) 
+					        {
+					          passengerList[i].is_in_db = true;
+					           
+					        }
+					
+							},
+					
+					   	function(response)
+		   				{
+		  					console.log('in PassengerRepository.post. got response=',	response.data);
+		            for (i= 0; i< passengerList.length; i++) 
+		            {
+		              passengerList[i].is_in_db = false;
+		            }
+		 						alert ('Error');
+		   				}   						
+						);
         }
     };
 
