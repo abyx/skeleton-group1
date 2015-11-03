@@ -30,7 +30,7 @@ app.post('/getPassenger', function(request, response) {
     "time": "08:00",
     "source": "Tel-Aviv",
     "destination": "Jerusalem",
-    "mail" : "group1@mailinator.com ", //"fredgeorge123@mail.com",
+    "mail" : "group11@mailinator.com ", //"fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false
   }});

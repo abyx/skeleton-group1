@@ -224,6 +224,7 @@ function matchRides() {
 	  			
 	  			 for(i = 0; i < ridesList.length; i++)
 	  			 {
+	  			 	 console.log("ridesList[i] = ", ridesList[i]);
 	  			 	try
 	  			 	{
 	  			 	  //get the email
