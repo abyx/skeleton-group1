@@ -34,7 +34,7 @@ angular.module('app').config(function($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'home.html',
-      controller: 'PassangerCtrl',
+      controller: 'getPassenger',
       controllerAs: 'passanger'
     })
     .when('/view1/:argument?', {
