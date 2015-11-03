@@ -1,36 +1,46 @@
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-header">Hello {{ home.greeting }}!</h1>
+        <h1 class="page-header">New Passenger Request </h1>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-8">
-        <p>Here is where we might put some information</p>
+        <p>please enter your request:</p>
     </div>
 </div>
 
 
 <div class="row">
     <div class="col-md-3">
-        <p>And of course stuff such as inputs: </p>
+        <label>Name:<input class="form-control" type="text" ></label>
+        <label>mail:<input class="form-control" type="text" ></label>
+     </div>
+ </div>
+<div class="row">
+     <div class="col-md-3">
+        <label>Date:<input class="form-control" type="text" ></label>
+        <label>Time:<input class="form-control" type="text" ></label>
     </div>
-    <div class="col-md-2">
-        <input class="form-control" type="text" ng-model="home.model.text">
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <label>Start:<input class="form-control" type="text" ></label>
+        <label>Destination:<input class="form-control" type="text" ng-model="home.model.text"></label>
     </div>
 </div>
 
-<div class="row">
+<!--<div class="row">
     <div class="col-md-8">
         <p>And what else can we use here?</p>
     </div>
-</div>
+</div> -->
 
 <div class="row">
-    <div class="col-md-3">
+     <!--<div class="col-md-3">
         <p>... buttons!</p>
-    </div>
+    </div> -->
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="home.buttonClicked()">Click me</button>
+        <button type="button" class="btn btn-primary" ng-click="home.buttonClicked()">Save</button>
     </div>
 </div>
