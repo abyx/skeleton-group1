@@ -148,39 +148,10 @@ myModule.controller('getPassenger', function($scope, myService, init) {
         console.log("appInitialized - selection: " + $scope.selectedOption);
         $scope.logentries.push(($scope.logentries.length + 1) + " - appInitialized - selection: " + $scope.selectedOption);
     });
-   }
-
-function getPassengerModel()
-{
-  return this.passenger;    
-}
-
- 
-  function init () 
-  {
-
-    console.log("in passanger.init BEGAIN");
-    
-    var self  = this;
-    self.passenger= getPassengerModel();
-    
-    console.log("in passanger.init END. Returnning passenger=" , self.passenger);
-    
-    return self.passenger;
-  }
-  
-    initController();
-    init();
-}
-
-    
-
-
-	
-	/*
-	function post (PassengerRepository , passengerList)
+   } 
+   
+  self.post = function(PassengerRepository, passengerList)
 	{				
-		 var	self	=	this;
 		console.log("in passanger.post BEGAIN. PassengerRepository= " + PassengerRepository + ", passengerList= " + passengerList);
 		 
 		  PassengerRepository.post(self.passengerList).then(
@@ -206,32 +177,27 @@ function getPassengerModel()
 			{
 				console.log("in passanger.post. in catch handler scope");
 			});
-			
 	}
-	*/
-);
+   
+    initController();
+	
+});
 
-/*
-angular.module('app').factory('PassengerRepository',	function($q)	
-{	
-	return	
-	{	
-		post:	function(passengerList)
-			 	  {	
-			 	 	   return	$q.when( { status: true } );
-			 	 	   
-			 	 	   /*$http.post('/some/url',	passengerList).then(	
-			 	 	   						function(response)	
-			 	 	   						{	
-			 	 	   							console.log('in PassengerRepository.post. got response=',	response.data);
-			 	 	   						}
- 						);*/
- 						/*
-		      }
+angular.module('app').factory('PassangerRepository', function($q) {
+	return {
+		post: function() {
+			
+			$http.post('/some/url',	passengerList).then(	
+   						function(response)	
+   						{	
+   							console.log('in PassengerRepository.post. got response=',	response.data);
+   						}
+			);
+		}
 	};
 });
 
-*/
+
 
 
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dialog","ui.bootstrap.dropdownToggle","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
