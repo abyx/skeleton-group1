@@ -39,10 +39,10 @@ angular.module('app').config(function($routeProvider) {
       controller: 'getPassenger',
       controllerAs: 'passanger'
     })
-    .when('/view1/:argument?', {
-      templateUrl: 'view1.html',
-      controller: 'View1Ctrl',
-      controllerAs: 'view1'
+    .when('/driver', {
+      templateUrl: 'driver.html',
+      controller: 'getDriver',
+      controllerAs: 'driver'
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-header"><font color="Green">New Passenger Request </font></h1>
+        <h1 class="page-header"><font color="Green">New Driver Request </font></h1>
     </div>
 </div>
 
@@ -19,8 +19,8 @@
  <td width="80%">   
 <div class="row">
     <div class="col-md-3">
-        <label>Name:<input class="form-control" type="text" ng-model="passanger.passenger.name" ></label>
-        <label>mail:<input class="form-control" type="text" ng-model="passanger.passenger.mail"  ></label>
+        <label>Name:<input class="form-control" type="text" ng-model="driver.driver.name" ></label>
+        <label>mail:<input class="form-control" type="text" ng-model="driver.driver.mail"  ></label>
      </div>
  </div>
 <div class="row" >
@@ -29,18 +29,18 @@
             type="date"
             id="test"
             name="birthdate"
-            ng-model="passanger.passenger.date" 
+            ng-model="driver.driver.date" 
             popup="d MMM yyyy"
             options="dateOptions"
             opened="opened"
             custom-datepicker/></label>
-        <label>Time:<input class="form-control" type="text" ng-model="passanger.passenger.time"  ></label>
+        <label>Time:<input class="form-control" type="text" ng-model="driver.driver.time"  ></label>
     </div>
 </div>
 <div class="row">
     <div class="col-md-3">
-        <label>Source:<input class="form-control" type="text" ng-model="passanger.passenger.source" ></label>
-        <label>Destination:<input class="form-control" type="text" ng-model="passanger.passenger.destination" ></label>
+        <label>Source:<input class="form-control" type="text" ng-model="driver.driver.source" ></label>
+        <label>Destination:<input class="form-control" type="text" ng-model="driver.driver.destination" ></label>
     </div>
 </div>
 </td>
@@ -61,7 +61,7 @@
         <p>... buttons!</p>
     </div> -->
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="passanger.buttonClicked()">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="getDriver.buttonClicked()">Save</button>
         <label >בקשתך התקבלה בהצלחה</label>
     </div>
 </div>
