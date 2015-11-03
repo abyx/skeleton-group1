@@ -19,13 +19,21 @@
  </div>
 <div class="row">
      <div class="col-md-3">
-        <label>Date:<input class="form-control" type="text" ></label>
+        <label>Date:<input
+            type="date"
+            id="test"
+            name="birthdate"
+            ng-model="birthDate"
+            popup="d MMM yyyy"
+            options="dateOptions"
+            opened="opened"
+            custom-datepicker/></label>
         <label>Time:<input class="form-control" type="text" ></label>
     </div>
 </div>
 <div class="row">
     <div class="col-md-3">
-        <label>Start:<input class="form-control" type="text" ></label>
+        <label>Source:<input class="form-control" type="text" ></label>
         <label>Destination:<input class="form-control" type="text" ng-model="home.model.text"></label>
     </div>
 </div>
@@ -42,5 +50,6 @@
     </div> -->
     <div class="col-md-2">
         <button type="button" class="btn btn-primary" ng-click="home.buttonClicked()">Save</button>
+        <label >בקשתך התקבלה בהצלחה</label>
     </div>
 </div>
