@@ -23,7 +23,7 @@ angular.module('app').controller('getDriver', function($scope, myDriverService, 
         console.log("driver is " ,  result);
         $scope.options = result[0].data.driver;
 
-        this.passenger = result[0].data.driver;
+        self.driver = result[0].data.driver;
         $scope.selectedOption = 0;
     });
     

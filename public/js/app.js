@@ -140,7 +140,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
         console.log("passenger is " ,  result);
         $scope.options = result[0].data.passenger;
 
-        this.passenger = result[0].data.passenger;
+        self.passenger = result[0].data.passenger;
         $scope.selectedOption = 0;
     });
     

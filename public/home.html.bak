@@ -13,7 +13,7 @@
 </div>
 
 <table>
-
+<div>{{ passanger.passenger }}</div>
  <tr>
 
  <td width="80%">   
@@ -66,9 +66,7 @@
 </div>
 
  <div class="row">
- 			<div ng-if="passanger.passenger">
-	      <label ng-if="passanger.passenger.is_in_db">
+ 			  <label ng-if="passanger.passenger.is_in_db">
 	      	 <font color="Green"><h1>Your request is saved.</b></font>
 	      </label>
-      </div>
  </div>

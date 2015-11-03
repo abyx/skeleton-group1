@@ -25,34 +25,62 @@ app.post('/getPassenger', function(request, response) {
   response.send({passenger: {
     "user_type" : "passenger",
     "user_id":  Math.random(),
-    "name": "",
+    "name": "passenger",
     "date": "",
-    "time": "",
+    "time": "08:00",
     "source": "Tel-Aviv",
-    "destination": "",
-    "mail" : "",
-    "status_match": "no"
+    "destination": "Jerusalem",
+    "mail" : "fredgeorge123@mail.com",
+    "status_match": false,
+    "is_in_db":false
   }});
 });
+
+app.post('/getDriver', function(request, response) {
+  response.send({driver: {
+    "user_type" : "Driver",
+    "user_id":  Math.random(),
+    "name": "driver",
+    "date": "",
+    "time": "08:00",
+    "source": "Tel-Aviv",
+    "destination": "Jerusalem",
+    "mail" : "fredgeorge123@mail.com",
+    "status_match": false,
+    "is_in_db":false
+  }});
+});
+
 
 app.get('/example', function(request, response) {
   response.send({success: true});
 });
 
-
-app.post('/updatetremp' , function (request, response) { 
-
-  console.log("begin update rides");
-
-  listOfRidesData.pushData(passenger);
-
-  console.log("end update rides");
-
-  response.send({success:true});
-})
+ 
 
 app.post('/PassengerRequest/', function(request, response) {
   console.log(request.body);
+
+ console.log("begin update passenger");
+
+  var passenger=request.body;
+  listOfRidesData.pushData(passenger);
+
+  console.log("end update passenger");
+
+  response.sendStatus(200);
+});
+
+app.post('/DriverRequest/', function(request, response) {
+  console.log(request.body);
+
+ console.log("begin update rides");
+
+  var driver=request.body;
+  listOfRidesData.pushData(driver);
+
+  console.log("end update rides");
+
   response.sendStatus(200);
 });
 
@@ -175,7 +203,7 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
 function matchRides() {
 
 	  var hour = 1;
-	  var interval = hour * 10 * 1000;
+	  var interval = hour * 60 * 60 * 1000;
 	 
 	  setInterval(function() {
 	  		
