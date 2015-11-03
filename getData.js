@@ -13,7 +13,8 @@ var exportArr =
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
 	  "status_match": false,
-	  "is_in_db":true
+	  "is_in_db":true,
+	   "is_selected" : false 
 	},
 	{
 	  "user_type" : "passenger",
@@ -26,10 +27,7 @@ var exportArr =
 	  "mail" : "noa_ben@mail.com",
 	  "status_match": true,
 	  "is_in_db":true,
-	  "is_selected" : false
-	  "status_match": false,
-	  "is_in_db":true
-
+	  "is_selected" : false 
 	},
 	{
 	  "user_type" : "Driver",
