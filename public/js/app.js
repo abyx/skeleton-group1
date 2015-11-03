@@ -29,8 +29,8 @@ angular.module('app').config(function($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'home.html',
-      controller: 'HomeCtrl',
-      controllerAs: 'home'
+      controller: 'PassangerCtrl',
+      controllerAs: 'passanger'
     })
     .when('/view1/:argument?', {
       templateUrl: 'view1.html',
