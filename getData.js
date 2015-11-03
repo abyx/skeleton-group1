@@ -1,7 +1,4 @@
-module.exports = {
-		GetData:function (){
-
-		var arr = 
+var exportArr = 
 		
 		
 [
@@ -9,7 +6,7 @@ module.exports = {
 	  "user_type" : "passenger",
 	  "user_id" : "1",
 	  "name": "Noa Ben",
-	  "date": "2/11/15",
+	  "date": "17/11/15",
 	  "time": "12:00:00",
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
@@ -20,7 +17,7 @@ module.exports = {
 	  "user_type" : "Driver",
 	  "user_id": "2",
 	  "name": "Miki Lev",
-	  "date": "2/11/15",
+	  "date": "16/11/15",
 	  "time": "10:00:00",
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
@@ -31,7 +28,7 @@ module.exports = {
 	  "user_type" : "Driver",
 	  "user_id": "2",
 	  "name": "Miki Lev",
-	  "date": "2/11/15",
+	  "date": "15/11/15",
 	  "time": "15:00:00",
 	  "source": "HEIFA",
 	  "destination": "Tel-Aviv",
@@ -84,9 +81,15 @@ module.exports = {
 	}
 ]; 
 
-return arr;
 
-
-
+module.exports = {
+		GetData:function ()
+		{
+			return exportArr;
+		}
+		,
+		pushData:function (trempItem)
+		{
+			exportArr.push(trempItem);
 		}
 }
