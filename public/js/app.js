@@ -1,8 +1,10 @@
 
 
-  
+ 
+angular.module('app.Repositories', []);
+var myModule = angular.module('app', ['ngRoute','ui.bootstrap', 'app.Repositories'])
 
-var myModule = angular.module('app', ['ngRoute','ui.bootstrap'])
+
 .directive('customDatepicker',function($compile,$timeout){
         return {
             replace:true,
@@ -49,10 +51,6 @@ angular.module('app').config(function($routeProvider) {
     })
     .otherwise({redirectTo: '/'});
 });
-
- 
-
-  
 
 
 myModule.factory('init', function ($q, $rootScope, $browser) {
@@ -129,7 +127,8 @@ myModule.service('myService', function($http) {
     };
 });
 
-myModule.controller('getPassenger', function($scope, myService, init) {
+
+myModule.controller('getPassenger', function($scope, myService, init, PassangerRepository) {
     var self = this;
    
    	console.log("in passanger. controller  BEGAIN.");
@@ -181,32 +180,34 @@ myModule.controller('getPassenger', function($scope, myService, init) {
 			});
 	}
 	
-	  self.buttonClicked = function(PassengerRepository)
+	  self.buttonClicked = function()
 		{
-			 console.log("in buttonClicked !!!");
-		   PassengerRepository.moshe(/*[self.passenger]*/);
+			 PassangerRepository.post([self.passenger]);
 		}
    
     initController();
 	
 });
 
-angular.module('app').factory('PassangerRepository', function($q) {
-	return {
-		moshe: function(/*passengerList*/) {
-			console.log("in PassangerRepository.post !!!!!");
-			/*
-			$http.post('http://localhost:3000/PassengerRequest',	passengerList).then(	
+angular.module('app.Repositories').factory('PassangerRepository', function($http) {
+	  return {
+        post: function(passengerList) {
+            $http.post('http://localhost:3000/PassengerRequest',	passengerList).then(	
    						function(response)	
    						{	
-   							console.log('in PassengerRepository.post. got response=',	response.data);
+   							  console.log('in PassengerRepository.post. got response=',	response.data);
    								alert ('finished');
-   						}
+   						},
+   						function(response)
+   						{
+   							console.log('in PassengerRepository.post. got response=',	response.data);
+   								alert ('Error');
+   						}   						
 			);
-			*/
-		}
-	};
-});
+        }
+    };
+
+}); 
 
 
 
