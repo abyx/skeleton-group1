@@ -31,7 +31,8 @@ app.post('/getPassenger', function(request, response) {
     "source": "Tel-Aviv",
     "destination": "",
     "mail" : "",
-    "status_match": "no"
+    "status_match": false,
+    "is_in_db":false
   }});
 });
 
@@ -172,7 +173,7 @@ client.ping({requestTimeout: 3000, hello: 'hey'}).then(
 
 function matchRides() {
 
-	  var hour = 8;
+	  var hour = 1;
 	  var interval = hour * 60 * 60 * 1000;
 	 
 	  setInterval(function() {

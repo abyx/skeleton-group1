@@ -11,7 +11,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
-	  "status_match": "yes"
+	  "status_match": true,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -22,7 +23,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -33,7 +35,8 @@ var exportArr =
 	  "source": "HEIFA",
 	  "destination": "Tel-Aviv",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -44,7 +47,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "passenger",
@@ -55,7 +59,8 @@ var exportArr =
 	  "source": "HEIFA",
 	  "destination": "TEL AVIV",
 	  "mail" : "HEN111@mail.com",
-	  "status_match": "yes"
+	  "status_match": "yes",
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "Driver",
@@ -66,7 +71,8 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "danna555@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
 	},
 	{
 	  "user_type" : "passenger",
@@ -77,7 +83,9 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "miki.lev@mail.com",
-	  "status_match": "no"
+	  "status_match": false,
+	  "is_in_db":true
+
 	}
 ]; 
 

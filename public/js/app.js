@@ -165,6 +165,8 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 							console.log("in passanger.post. in success handler scope. result is true");
 						}
 					}
+
+         
 				},
 				function(result)
 				{
@@ -172,11 +174,15 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 					{
 						console.log("in passanger.post. in error handler scope");
 					}
+         
+    
 				}
 			)
 			.catch(function(result)
 			{
 				console.log("in passanger.post. in catch handler scope");
+      
+      
 			});
 	}
 	
@@ -196,11 +202,27 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
    						function(response)	
    						{	
    							  console.log('in PassengerRepository.post. got response=',	response.data);
+
+        for (i= 0; i< passengerList.length; i++) 
+            {
+              passengerList[i].is_in_db = true;
+           
+             }
+
    								alert ('finished');
    						},
    						function(response)
    						{
    							console.log('in PassengerRepository.post. got response=',	response.data);
+                
+         
+           
+            for (i= 0; i< passengerList.length; i++) 
+            {
+              passengerList[i].is_in_db = false;
+           
+             }
+ 
    								alert ('Error');
    						}   						
 			);
