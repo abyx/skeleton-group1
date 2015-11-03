@@ -7,19 +7,55 @@ var _ = require('lodash');
 var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
+var listOfRidesData = require('./getData');
+ 
+
 
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 
 app.use(express.static('public'));
+
 app.use(bodyParser.json());
 
 app.param('id', function(req, res, next) {
   next();
 });
 
+app.post('/getPassenger', function(request, response) {
+  response.send({passenger: {
+    "user_type" : "passenger",
+    "user_id":  Math.random(),
+    "name": "",
+    "date": "",
+    "time": "",
+    "source": "Tel-Aviv",
+    "destination": "",
+    "mail" : "",
+    "status_match": "no"
+  }});
+});
+
 app.get('/example', function(request, response) {
   response.send({success: true});
 });
+
+
+app.post('/updatetremp' , function (request, response) { 
+
+  console.log("begin update rides");
+
+  listOfRidesData.pushData(passenger);
+
+  console.log("end update rides");
+
+  response.send({success:true});
+})
+
+app.post('/PassengerRequest/', function(request, response) {
+  console.log(request.body);
+  response.sendStatus(200);
+});
+
 
 app.post('/example/:id', function(request, response) {
   console.log(request.body, request.params.id, 'query', request.query);
@@ -199,8 +235,23 @@ function sendMail()
 	return true;
 }
 
+ 
+
+ 
+//function checkRides()
+//{
+//	 return { status : true, rideID : 1 };
+//}
+ 
+ 
 function getHTML(txt)
 {
 	 var html = "<html><body style='{bgcolor:gray, color:blue }'>" + txt + "</body></html>"
 	 return html;
+}
+
+function SavePost(list)
+{
+  var res = {status:"success"};
+  return res;
 }

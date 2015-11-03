@@ -1,4 +1,8 @@
-angular.module('app', ['ngRoute','ui.bootstrap'])
+
+
+  
+
+var myModule = angular.module('app', ['ngRoute','ui.bootstrap'])
 .directive('customDatepicker',function($compile,$timeout){
         return {
             replace:true,
@@ -25,12 +29,13 @@ angular.module('app', ['ngRoute','ui.bootstrap'])
         $scope.dateOptions = {};
     });
 
+
 angular.module('app').config(function($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'home.html',
-      controller: 'HomeCtrl',
-      controllerAs: 'home'
+      controller: 'getPassenger',
+      controllerAs: 'passanger'
     })
     .when('/view1/:argument?', {
       templateUrl: 'view1.html',
@@ -39,31 +44,113 @@ angular.module('app').config(function($routeProvider) {
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',
-      controller: 'PassangerCtrl',
+      controller: 'getPassenger',
       controllerAs: 'passanger'
     })
     .otherwise({redirectTo: '/'});
 });
 
-function getPassengerModel()
-{
-	return  [{name: "Gil-ad"}];	   
-}
+ 
+
+  
 
 
-angular.module('app').controller('PassangerCtrl', function() {
-	var	self	=	this;
-	
-	self.getDefaultModel = function() 
-	{
-		console.log("in passanger.init BEGAIN");
-	 	var passenger =	getPassengerModel();
-	 	console.log("in passanger.init END. Returnning passenger=" + passenger);
-	 	return passenger;
-	};	
-	
-	
-	self.post = function(PassengerRepository, passengerList)
+myModule.factory('init', function ($q, $rootScope, $browser) {
+ 
+  var initFunctions = [
+    'getPassenger'
+  ];
+  var registeredInitFunctions = {};
+  var initialized = false;
+ 
+  var initApplication = function () {
+    var getPassenger = registeredInitFunctions['getPassenger'];
+ 
+    var broadcastAppInitialized = function () {
+      $browser.defer(function () {
+        initialized = true;
+        $rootScope.$apply(function () {
+          $rootScope.$broadcast('appInitialized');
+        });
+      });
+    };
+    getPassenger.init()
+      .then(broadcastAppInitialized);
+  };
+ 
+  $rootScope.$on('$routeChangeStart', function () {
+    registeredInitFunctions = {};
+    initialized = false;
+  });
+ 
+  var initAppWhenReady = function () {
+      initApplication();
+    
+  };
+ 
+  var init = function (name, dependencies, initCallback) {
+    registeredInitFunctions[name] = {
+      init: function () {
+        var internalDependencies = $q.all(dependencies);
+        return internalDependencies.then(initCallback);
+      }};
+    initAppWhenReady();
+  };
+ 
+    init.watchAfterInit = function (scope, expression, listener, deepEqual) {
+      scope.$watch(expression, function (newValue, oldValue, listenerScope) {
+        if (initialized) {
+          listener(newValue, oldValue, listenerScope);
+        }
+      }, deepEqual);
+    };
+
+    init.onAfterInit = function (scope, event, listener) {
+      scope.$on(event, function (event) {
+        if (initialized) {
+          listener(event);
+        }
+      });
+    };
+ 
+  return  init;
+});
+
+myModule.service('myService', function($http) {
+    
+    this.getOptions = function() {
+        return $http({
+            "method": "post",
+            "url": 'http://localhost:3000/getPassenger', 
+            "data": {
+                options: []
+            }
+        });
+    };
+});
+
+myModule.controller('getPassenger', function($scope, myService, init) {
+    
+    function initController() {
+          $scope.selectedOption = null;
+          $scope.options = [];
+          $scope.logentries = [];
+        init('getPassenger', [myService.getOptions()], function(result) {
+        console.log("passenger is " ,  result);
+        $scope.options = result[0].data.passenger;
+
+        this.passenger = result[0].data.passenger;
+        $scope.selectedOption = 0;
+    });
+    
+    
+    $scope.$on('appInitialized', function () {
+        console.log("appInitialized - selection: " + $scope.selectedOption);
+        $scope.logentries.push(($scope.logentries.length + 1) + " - appInitialized - selection: " + $scope.selectedOption);
+    });
+   } 
+   
+  self.post = function(PassengerRepository, passengerList)
 	{				
 		console.log("in passanger.post BEGAIN. PassengerRepository= " + PassengerRepository + ", passengerList= " + passengerList);
 		 
@@ -91,6 +178,8 @@ angular.module('app').controller('PassangerCtrl', function() {
 				console.log("in passanger.post. in catch handler scope");
 			});
 	}
+   
+    initController();
 	
 });
 
@@ -3603,3 +3692,4 @@ angular.module("template/typeahead/typeahead.html", []).run(["$templateCache", f
     "    </li>\n" +
     "</ul>");
 }]);
+ 
