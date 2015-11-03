@@ -40,7 +40,9 @@ module.exports = {
      for(j=0;j<rides.length; j++) {
      	if (rides[j].user_type== "Driver" 
      		&& rides[j].source== request.Passenger.source 
-     		&& rides[j].destination == request.Passenger.destination ) {
+     		&& rides[j].destination == request.Passenger.destination 
+     		&& rides[j].date == request.Passenger.date
+     		&& rides[j].time == request.Passenger.time) {
      		return true;
      	} 
       }
