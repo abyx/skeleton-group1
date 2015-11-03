@@ -25,12 +25,12 @@ app.post('/getPassenger', function(request, response) {
   response.send({passenger: {
     "user_type" : "passenger",
     "user_id":  Math.random(),
-    "name": "",
-    "date": "",
-    "time": "",
+    "name": "passenger",
+    "date": new Date().toJSON().slice(0,10),
+    "time": "08:00",
     "source": "Tel-Aviv",
-    "destination": "",
-    "mail" : "",
+    "destination": "Jerusalem",
+    "mail" : "fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false
   }});
@@ -40,12 +40,12 @@ app.post('/getDriver', function(request, response) {
   response.send({driver: {
     "user_type" : "Driver",
     "user_id":  Math.random(),
-    "name": "",
-    "date": "",
-    "time": "",
+    "name": "driver",
+    "date": new Date().toJSON().slice(0,10),
+    "time": "08:00",
     "source": "Tel-Aviv",
-    "destination": "",
-    "mail" : "",
+    "destination": "Jerusalem",
+    "mail" : "fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false
   }});

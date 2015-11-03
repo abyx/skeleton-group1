@@ -189,6 +189,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	  self.buttonClicked = function()
 		{
 			 PassangerRepository.post([self.passenger]);
+			 
 		}
    
     initController();
