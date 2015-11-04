@@ -47,7 +47,8 @@ var exportArr =
 	  "status_match": false,
 	  "is_in_db":true,
 	  "is_selected" : false,
-	  "is_email_sent": false
+	  "is_email_sent": false,
+	   "rank": 0
 	},
 	{
 	  "user_type" : "Driver",
@@ -120,7 +121,7 @@ var exportArr =
 	  "is_email_sent": false
 
 	}
-	*/
+	
 ]; 
 
 
