@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-header"><font color="Green">The Rides Of User</font></h1>
+        <h1 class="page-header"><font color="Green">The Drives Of User</font></h1>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-8">
         
-        <p><i>Ride Alongs</i></p>
+        <p><i>Drive Alongs</i></p>
 
     </div>
 </div>
@@ -19,7 +19,7 @@
  <td width="80%">   
 <div class="column">
     <div class="col-md-3">
-        <label>Name:<input class="form-control" type="text" ng-model="Rides.Ride.name" ></label>
+        <label>Name:<input class="form-control" type="text" ng-model="Drives.Drive.name" ></label>
 
      </div>
  </div>
@@ -29,7 +29,7 @@
             type="date"
             id="test"
             name="birthdate"
-            ng-model="Rides.Ride.date" 
+            ng-model="Drives.Drive.date" 
             popup="d MMM yyyy"
             options="dateOptions"
             opened="opened"
@@ -39,13 +39,13 @@
 </div>
 <div class="column">
     <div class="col-md-3">
-        <label>Time:<input class="form-control" type="text" ng-model="Rides.Ride.time"  ></label>
+        <label>Time:<input class="form-control" type="text" ng-model="Drives.Drive.time"  ></label>
     </div>
 </div>
 <div class="col">
     <div class="col-md-3">
-        <label>Source:<input class="form-control" type="text" ng-model="Rides.Ride.source" ></label>
-        <label>Destination:<input class="form-control" type="text" ng-model="Rides.Ride.destination" ></label>
+        <label>Source:<input class="form-control" type="text" ng-model="Drives.Drive.source" ></label>
+        <label>Destination:<input class="form-control" type="text" ng-model="Drives.Drive.destination" ></label>
     </div>
 </div>
 </td>
@@ -66,21 +66,21 @@
         <p>... buttons!</p>
     </div> -->
     <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="Rides.buttonClicked()">Query Rides</button>
+        <button type="button" class="btn btn-primary" ng-click="Drives.buttonClicked()">Query Drives</button>
     </div>
 </div>
 
 
 <div class="row">
     <div class="col-md-2">
-         <label>Count Of Ride Alongs:<input class="form-control" type="text" ng-model="Rides.Rides.length" ></label>
+         <label>Count Of Drive Alongs:<input class="form-control" type="text" ng-model="Drives.Drives.length" ></label>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-4">
         <ul>
-            <li ng-repeat="ride in Rides.Rides"> {{ ride.name + ', ' + ride.source + ' > ' + ride.destination + "  --  "+ ride.date + " ("+ride.time+")"  }}</li>
+            <li ng-repeat="Drive in Drives.Drives"> {{ Drive.name + ', ' + Drive.source + ' > ' + Drive.destination + "  --  "+ Drive.date + " ("+Drive.time+")"  }}</li>
         </ul>
     </div>
 
@@ -88,7 +88,7 @@
 </div>
 
 <div class="row">
-      <label ng-if="Rides.Ride.is_in_db">
+      <label ng-if="Drives.Drive.is_in_db">
       	 <font color="Green"><h1>Your request is saved.</b></font>
       </label>
  </div

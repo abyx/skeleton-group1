@@ -2,7 +2,7 @@ var exportArr =
 	
 		
 [
-/*
+
 {
 	  "user_type" : "Driver",
 	  "user_id" : "10",
@@ -108,7 +108,7 @@ var exportArr =
 	  "is_selected" : false
 
 	}
-	*/
+	
 ]; 
 
 
