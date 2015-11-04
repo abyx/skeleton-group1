@@ -1,8 +1,10 @@
+var _ = require('lodash');
+
 var exportArr = 
 	
 		
 [
-
+/*
 {
 	  "user_type" : "Driver",
 	  "user_id" : "10",
@@ -14,7 +16,8 @@ var exportArr =
 	  "mail" : "noa_ben@mail.com",
 	  "status_match": false,
 	  "is_in_db":true,
-	   "is_selected" : false 
+	  "is_selected" : false,
+	  "is_email_sent": false 
 	},
 	{
 	  "user_type" : "passenger",
@@ -25,9 +28,10 @@ var exportArr =
 	  "source": "Tel-Aviv",
 	  "destination": "HAIFA",
 	  "mail" : "noa_ben@mail.com",
-	  "status_match": true,
+	  "status_match": false,
 	  "is_in_db":true,
-	  "is_selected" : false 
+	  "is_selected" : false,
+	  "is_email_sent": false 
 	},
 	{
 	  "user_type" : "Driver",
@@ -40,7 +44,8 @@ var exportArr =
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
 	  "is_in_db":true,
-	  "is_selected" : false
+	  "is_selected" : false,
+	  "is_email_sent": false
 	},
 	{
 	  "user_type" : "Driver",
@@ -53,7 +58,8 @@ var exportArr =
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
 	  "is_in_db":true,
-	  "is_selected" : false
+	  "is_selected" : false,
+	  "is_email_sent": false
 	},
 	{
 	  "user_type" : "Driver",
@@ -66,7 +72,8 @@ var exportArr =
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
 	  "is_in_db":true,
-	  "is_selected" : false
+	  "is_selected" : false,
+	  "is_email_sent": false
 	},
 	{
 	  "user_type" : "passenger",
@@ -79,7 +86,8 @@ var exportArr =
 	  "mail" : "HEN111@mail.com",
 	  "status_match": true,
 	  "is_in_db":true,
-	  "is_selected" : false
+	  "is_selected" : false,
+	  "is_email_sent": false
 	},
 	{
 	  "user_type" : "Driver",
@@ -92,7 +100,8 @@ var exportArr =
 	  "mail" : "danna555@mail.com",
 	  "status_match": false,
 	  "is_in_db":true,
-	  "is_selected" : false
+	  "is_selected" : false,
+	  "is_email_sent": false
 	},
 	{
 	  "user_type" : "passenger",
@@ -105,10 +114,11 @@ var exportArr =
 	  "mail" : "miki.lev@mail.com",
 	  "status_match": false,
 	  "is_in_db":true,
-	  "is_selected" : false
+	  "is_selected" : false,
+	  "is_email_sent": false
 
 	}
-	
+	*/
 ]; 
 
 
@@ -116,26 +126,62 @@ module.exports = {
 		GetData:function ()
 		{
 			return exportArr;
-		}
-		,
+		},
+		
 		GetDataOfRides:function(name, source ,destination, date , time) {
-			console.log("in get data of rides ", name, source ,destination, date , time);
+			console.log("in get data of rides *{0}*", name, source ,destination, date , time);
 			var retArr = [];
 			for (i=0;i<exportArr.length;i++) {
 				if (exportArr[i].user_type == "passenger" 
 					&& 
-					(exportArr[i].name == name ||
-					 (exportArr[i].source == source &&
-					 exportArr[i].destination == destination &&
-					 exportArr[i].date == date &&
-					 exportArr[i].time == time )
-					 	)){ 
+					   (name ==' ' || exportArr[i].name == name) &&
+					   (source ==' ' || exportArr[i].source==source)  &&
+					   (destination==' ' || exportArr[i].destination== destination) &&
+					   (date==' ' || exportArr[i].date == date) &&
+					   (time==' ' || exportArr[i].time == time)	 
+					 	){ 
 					retArr.push(exportArr[i]);
 							console.log("pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
 				} else{
 					console.log("not pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
 
 				}
+			}
+			return retArr;
+
+		},
+		GetDataOfMatchingRidesByUser:function(name, source ,destination, date , time) {
+			console.log("in get data of rides ", name, source ,destination, date , time);
+			var retArr = [];
+			var passenger = "undefined";
+			for (i=0;i<exportArr.length;i++) {
+				if (exportArr[i].user_type == "passenger" 
+					&&  exportArr[i].status_match == false &&
+					(exportArr[i].name == name ||
+					 (exportArr[i].source == source &&
+					 exportArr[i].destination == destination &&
+					 exportArr[i].date == date &&
+					 exportArr[i].time == time )
+					 	)){ 
+					passenger = exportArr[i];
+					 
+					console.log("pushing of passenger ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+				} 
+			}
+
+			for (i=0;i<exportArr.length;i++) {
+				if (exportArr[i].user_type == "Driver" 
+					&&  exportArr[i].status_match == false &&
+					(exportArr[i].name == passenger.name ||
+					 (exportArr[i].source == passenger.source &&
+					 exportArr[i].destination == passenger.destination &&
+					 exportArr[i].date == passenger.date &&
+					 exportArr[i].time == passenger.time )
+					 	)){ 
+					 
+					retArr.push(exportArr[i]);
+					console.log("pushing of driver ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+				} 
 			}
 			return retArr;
 
@@ -153,7 +199,7 @@ module.exports = {
 					 exportArr[i].time == time )
 					 	)){ 
 					retArr.push(exportArr[i]);
-console.log("pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+					console.log("pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
 				} else{
 					console.log("not pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
 
@@ -161,10 +207,19 @@ console.log("pushing of rides ", exportArr[i].name, exportArr[i].source ,exportA
 			}
 			return retArr;
 
-		}
-		,
+		},
+		
 		pushData:function (trempItem)
 		{
 			exportArr.push(trempItem);
+		},
+		
+		markEmailAsSent: function(trempItemId)
+		{
+			 console.log("in markEmailIsSent.   trempItemId = ", trempItemId);
+			 var updating = _.findWhere(exportArr, { 'user_id': trempItemId });
+			 console.log('updating', updating);
+			 updating.is_email_sent = true;
 		}
+		
 }
