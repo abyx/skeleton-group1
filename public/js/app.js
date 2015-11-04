@@ -145,7 +145,7 @@ myModule.service('myService', function($http) {
 });
 
 
-myModule.controller('getPassenger', function($scope, myService, init, PassangerRepository) {
+myModule.controller('getPassenger', function($scope, myService, init, PassangerRepository, $timeout, $route) {
     var self = this;
    
    	console.log("in passanger. controller  BEGAIN.");
@@ -206,7 +206,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	  self.buttonClicked = function()
 		{
 			 PassangerRepository.post([self.passenger]);
-			 
+			 $timeout(function(){ $route.reload(); }, 2000);
 		}
    
     initController();

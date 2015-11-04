@@ -11,7 +11,7 @@ myModule.service('myDriverService', function($http) {
     };
 });
 
-angular.module('app').controller('getDriver', function($scope, myDriverService, initDriver, DriverRepository) {
+angular.module('app').controller('getDriver', function($scope, myDriverService, initDriver, DriverRepository, $route, $timeout) {
     var self = this;
    
    	console.log("in driver. controller  BEGAIN.");
@@ -66,6 +66,7 @@ angular.module('app').controller('getDriver', function($scope, myDriverService, 
 	  self.buttonClicked = function()
 		{
 			 DriverRepository.post([self.driver]);
+		   $timeout(function(){ $route.reload(); }, 2000);
 		}
    
     initController();

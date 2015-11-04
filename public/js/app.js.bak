@@ -31,6 +31,8 @@ var myModule = angular.module('app', ['ngRoute','ui.bootstrap', 'app.Repositorie
         $scope.dateOptions = {};
     });
 
+    
+
 
 angular.module('app').config(function($routeProvider) {
   $routeProvider
@@ -43,6 +45,11 @@ angular.module('app').config(function($routeProvider) {
       templateUrl: 'driver.html',
       controller: 'getDriver',
       controllerAs: 'driver'
+    })
+    .when('/rides', {
+      templateUrl: 'rides.html',
+      controller: 'getRides',
+      controllerAs: 'Rides'
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',
@@ -140,7 +147,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
         console.log("passenger is " ,  result);
         $scope.options = result[0].data.passenger;
 
-        this.passenger = result[0].data.passenger;
+        self.passenger = result[0].data.passenger;
         $scope.selectedOption = 0;
     });
     
@@ -189,7 +196,7 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 	  self.buttonClicked = function()
 		{
 			 PassangerRepository.post([self.passenger]);
-			 
+			 $timeout(function(){ $route.reload(); }, 2000);
 		}
    
     initController();
