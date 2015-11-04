@@ -1,73 +1,12 @@
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-header"><font color="Green">Wellcome Billy Brown </font></h1>
-        <img src="status.png"/>
+        <table>
+            <tr>
+        <td><h2 class="page-header"><font color="Blue">Wellcome Billy Brown </font></h2></td>
+        <td><img src="status.png"/></td>
+    </tr>
+    </table>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        
-        <p><i>please enter your request:</i></p>
 
-    </div>
-</div>
-
-<table>
-
- <tr>
-
- <td width="80%">   
-<div class="row">
-    <div class="col-md-3">
-        <label>Name:<input class="form-control" type="text" ng-model="passanger.passenger.name" ></label>
-        <label>mail:<input class="form-control" type="text" ng-model="passanger.passenger.mail"  ></label>
-     </div>
- </div>
-<div class="row" >
-     <div class="col-md-3">
-        <label>Date:<input
-            type="date"
-            id="test"
-            name="birthdate"
-            ng-model="passanger.passenger.date" 
-            popup="d MMM yyyy"
-            options="dateOptions"
-            opened="opened"
-            custom-datepicker/></label>
-        <label>Time:<input class="form-control" type="text" ng-model="passanger.passenger.time"  ></label>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-3">
-        <label>Source:<input class="form-control" type="text" ng-model="passanger.passenger.source" ></label>
-        <label>Destination:<input class="form-control" type="text" ng-model="passanger.passenger.destination" ></label>
-    </div>
-</div>
-</td>
-
-<td width="20%" align="left"><img src="carPoll.jpg"/></td>
-
-</tr>
-</table>
-
-<!--<div class="row">
-    <div class="col-md-8">
-        <p>And what else can we use here?</p>
-    </div>
-</div> -->
-
-<div class="row">
-     <!--<div class="col-md-3">
-        <p>... buttons!</p>
-    </div> -->
-    <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="passanger.buttonClicked()">Save</button>
-    </div>
-</div>
-
- <div class="row">
- 			  <label ng-if="passanger.passenger.is_in_db">
-	      	 <font color="Green"><h1>Your request is saved.</b></font>
-	      </label>
- </div>
