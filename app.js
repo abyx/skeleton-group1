@@ -33,7 +33,8 @@ app.post('/getPassenger', function(request, response) {
     "destination": "",
     "mail" : "group11@mailinator.com ", //"fredgeorge123@mail.com",
     "status_match": false,
-    "is_in_db":false
+    "is_in_db":false,
+    "is_email_sent": false
   }});
 });
 
@@ -51,7 +52,8 @@ app.post('/getDriver', function(request, response) {
     "destination": "",
     "mail" : "fredgeorge123@mail.com",
     "status_match": false,
-    "is_in_db":false
+    "is_in_db":false,
+    "is_email_sent": false
   }});
 });
 
@@ -278,7 +280,7 @@ function matchRides() {
 
 	  var hour = 1;
 	  var interval = hour * 1 * 5 * 1000;
-	 return;
+	 
 	  setInterval(function() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
@@ -287,31 +289,38 @@ function matchRides() {
 	  			
 	  		if(ridesList != null && ridesList != 'undefined')
 	  		{
-	  			console.log("ridesList = ",  ridesList);
+	  			//console.log("ridesList = ",  ridesList);
 	  			
 	  			 for(var i = 0; i < ridesList.length; i++)
 	  			 {
-	  			 	 console.log("ridesList[i] = ", ridesList[i]);
+	  			 	 //console.log("ridesList[i] = ", ridesList[i]);
 	  			 	try
 	  			 	{
-	  			 	  //get the email
-	  			 	  var passangerEmail = getPassangerEmail(ridesList[i]);
-	  			 	  var body = getEmailBody(ridesList[i]);
-	  			 	  var subject = getEmailSubject(ridesList[i]);
-	  			 	 
-	  			 	  
-	  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
-	  			 	  {
-	  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, body);
-	  			 	  	 if(sendEmailResult != null && sendEmailResult != 'undefined')
-	  			 	  	 {
-	  			 	  	 	 console.log("sendEmailResult = ", sendEmailResult);
-	  			 	  	 	
-	  			 	  	 	 if(sendEmailResult)
-		  			 	  	 {
-		  			 	  	 	  markRideAsMatch(matchResult.rideID);
-		  			 	  	 }
-	  			 	  	}
+	  			 		var isToSendEmailBool = moshe(ridesList[i]);
+	  			 		 
+	  			 		if(isToSendEmailBool)
+	  			 		{
+	  			 			 console.log("isToSendEmailBool = ", isToSendEmailBool);
+	  			 			 
+	  			 	 	  //get the email
+		  			 	  var passangerEmail = getPassangerEmail(ridesList[i]);
+		  			 	  var body = getEmailBody(ridesList[i]);
+		  			 	  var subject = getEmailSubject(ridesList[i]);
+		  			 	  
+		  			 	  if(passangerEmail != null && passangerEmail != 'undefined')
+		  			 	  {
+		  			 	  	 var sendEmailResult = mail.sendmail(passangerEmail, subject, body);
+		  			 	  	 //if(sendEmailResult != null && sendEmailResult != 'undefined')
+		  			 	  	// {
+		  			 	  	 	// console.log("sendEmailResult = ", sendEmailResult);
+		  			 	  	 	
+		  			 	  	 	 //if(sendEmailResult)
+			  			 	  	//{
+			  			 	  	 	  //markRideAsMatch(ride.passenger.user_id);
+			  			 	  	 //}
+			  			 	  	 markRideAsMatch(ridesList[i].passenger.user_id);
+		  			 	  	//}
+		  			 	  }
 	  			 	  }
 	  			 	}
 	  			 	catch(err)
@@ -323,6 +332,23 @@ function matchRides() {
 	  			
 	  		
 		}, interval);
+}
+
+function moshe(ride)
+{
+	 console.log("In moshe ride = ", ride);
+	 var isToSend = false;
+	 if(ride.passenger.is_email_sent)
+	 {
+	  	isToSend = false;
+	 }
+	 else
+	 {
+	 	 isToSend = true;
+	 }
+	 
+	 console.log("isToSend = ", isToSend);
+	 return isToSend;
 }
 
 function getPassangerEmail(ride)
@@ -361,10 +387,10 @@ function getEmailSubject(ride)
 	return subject;
 }
 
-function markRideAsMatch(rideID)
+function markRideAsMatch(passengerUserId)
 {
 	 //update the db with this ride as closed --> meaning we have match between passenger and driver/ride
-	 
+	 listOfRidesData.markEmailAsSent(passengerUserId);
 	 return true;	 
 }
 
