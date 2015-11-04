@@ -93,7 +93,7 @@ var time = "undefined";
       date = request.body.date;
       time = request.body.time;
  }
-  var rides = listOfRidesData.GetDataOfRides(name, source ,destination, date , time);
+  var rides = listOfRidesData.GetDataOfMatchingRidesByUser(name, source ,destination, date , time);
   response.send({Rides:rides});
 });
 
