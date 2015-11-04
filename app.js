@@ -8,6 +8,7 @@ var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
 var listOfRidesData = require('./getData');
+var userName = "Billy Brown";
  
 
 
@@ -25,7 +26,7 @@ app.post('/getPassenger', function(request, response) {
   response.send({passenger: {
     "user_type" : "passenger",
     "user_id":  Math.random(),
-    "name": "passenger",
+    "name": userName,
     "date": new Date().toJSON().slice(0,10),
     "time": "08:00",
     "source": "Tel-Aviv",

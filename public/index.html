@@ -38,22 +38,38 @@
             <div class="container">
                 <nav>
                     <ul class="nav navbar-nav">
-                        <li><a href="#/NewPassengerRequest">New Passanger Request</a></li>
+                        <li><a href="#/">New Passanger Request</a></li>
                         <li><a href="#/driver">New Driver Request</a></li>
                         <li><a href="#/rides">Show my Rides</a></li>
                         <li><a href="#/drives">Show my Drives</a></li>
                           <li><a href="#/view2">Show my view</a></li>
                     </ul>
                 </nav>
+
+
+
+<!--<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="userName"></p>
+<p>You wrote: {{ userName }}</p> -->
+
+
+
+                <div ng-app="" ng-init="userName='Billy Browm'">
+                    <table>
+                        <tr>
+                            <td><img src="status.png"/></td>
+                            <td><i><h4 ><font color="Blue"> {{userName}} </font></h4></i></td>
+                            <td> <u> log-out </u></td>
+                        </tr>
+                    </table>
+                                       
+                </div>
+
             </div>
         </header>
 
+
         <div class="container" ng-view></div>
-
-
-        
-
-   
     
     <script type="text/ng-template" id="custom-datepicker.html">
         <div class="form-inline enhanced-datepicker">
