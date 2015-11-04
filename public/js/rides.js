@@ -5,7 +5,7 @@ myModule.service('myRidesService', function($http) {
     this.getOptions = function(nameParam,sourceParam,destinationParam,dateParam,timeParam) {
         return $http({
             "method": "post",
-            "url": 'http://localhost:3000/getRides', 
+            "url": 'http://localhost:3000/getMatchingDrivesByUser', 
             "data": 
                 {name: nameParam,
                   source:sourceParam ,destination:destinationParam, 
@@ -24,7 +24,7 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        initRides('getRides', [myRidesService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
+        initRides('getRides', [myRidesService.getOptions($scope.$parent.userName,' ',' ' ,' ',' ')], function(result) {
         console.log("Rides is " ,  result);
         $scope.options = result[0].data.Rides;
 
