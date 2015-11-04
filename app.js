@@ -34,7 +34,8 @@ app.post('/getPassenger', function(request, response) {
     "mail" : "group11@mailinator.com ", //"fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false,
-    "is_email_sent": false
+    "is_email_sent": false,
+    "rank": 0
   }});
 });
 
@@ -53,7 +54,8 @@ app.post('/getDriver', function(request, response) {
     "mail" : "fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false,
-    "is_email_sent": false
+    "is_email_sent": false,
+    "rank": 0
   }});
 });
 
