@@ -411,3 +411,19 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
+
+app.post('/getRankByUser', function(request, response) {
+
+  var rank = 0
+  var id = "undefined";
+
+  if (request.body != "undefined") 
+  {
+    console.log("request body is " , request.body);
+      name = request.body.name;
+      id = request.body.id;
+  }
+  
+  rank = listOfRidesData.getRankByUser(name, id);
+  response.send({rank:rank});
+});
