@@ -44,11 +44,14 @@ app.post('/getDriver', function(request, response) {
   response.send({driver: {
     "user_type" : "Driver",
     "user_id":  Math.random(),
-    "name": "driver",
+    "name": userName,
     "date": new Date().toJSON().slice(0,10),
-    "time": "08:00",
-    "source": "Tel-Aviv",
-    "destination": "Jerusalem",
+    //"time": "08:00",
+    //"source": "Tel-Aviv",
+    //"destination": "Jerusalem", 
+    "time": "",
+    "source": "",
+    "destination": "",
     "mail" : "fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false
