@@ -233,7 +233,7 @@ function matchRides() {
 
 	  var hour = 1;
 	  var interval = hour * 1 * 5 * 1000;
-	 
+	 return;
 	  setInterval(function() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
