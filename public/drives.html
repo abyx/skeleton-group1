@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="page-header"><font color="Green">The Drives Of User</font></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        
+        <p><i>Drive Alongs</i></p>
+
+    </div>
+</div>
+
+<table>
+
+ <tr>
+
+ <td width="80%">   
+<div class="column">
+    <div class="col-md-3">
+        <label>Name:<input class="form-control" type="text" ng-model="Drives.Drive.name" ></label>
+
+     </div>
+ </div>
+<div class="column" >
+     <div class="col-md-3">
+        <label>Date:<input
+            type="date"
+            id="test"
+            name="birthdate"
+            ng-model="Drives.Drive.date" 
+            popup="d MMM yyyy"
+            options="dateOptions"
+            opened="opened"
+            custom-datepicker/></label>
+        
+    </div>
+</div>
+<div class="column">
+    <div class="col-md-3">
+        <label>Time:<input class="form-control" type="text" ng-model="Drives.Drive.time"  ></label>
+    </div>
+</div>
+<div class="col">
+    <div class="col-md-3">
+        <label>Source:<input class="form-control" type="text" ng-model="Drives.Drive.source" ></label>
+        <label>Destination:<input class="form-control" type="text" ng-model="Drives.Drive.destination" ></label>
+    </div>
+</div>
+</td>
+
+<td width="20%" align="left"><img src="carPoll.jpg"/></td>
+
+</tr>
+</table>
+
+<!--<div class="row">
+    <div class="col-md-8">
+        <p>And what else can we use here?</p>
+    </div>
+</div> -->
+
+<div class="row">
+     <!--<div class="col-md-3">
+        <p>... buttons!</p>
+    </div> -->
+    <div class="col-md-2">
+        <button type="button" class="btn btn-primary" ng-click="Drives.buttonClicked()">Query Drives</button>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-2">
+         <label>Count Of Drive Alongs:<input class="form-control" type="text" ng-model="Drives.Drives.length" ></label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <ul>
+            <li ng-repeat="Drive in Drives.Drives"> {{ Drive.name + ', ' + Drive.source + ' > ' + Drive.destination + "  --  "+ Drive.date + " ("+Drive.time+")"  }}</li>
+        </ul>
+    </div>
+
+
+</div>
+
+<div class="row">
+      <label ng-if="Drives.Drive.is_in_db">
+      	 <font color="Green"><h1>Your request is saved.</b></font>
+      </label>
+ </div
+

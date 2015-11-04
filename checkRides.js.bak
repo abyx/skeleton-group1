@@ -16,10 +16,9 @@ module.exports = {
 	
    for (i=0; i<listOfRides.length ;i++)
 	{
-		console.log("listOfRides[i] = ",  listOfRides[i][0]);
-	  console.log("listOfRides[i].user_type  = ",  listOfRides[i][0].user_type);
+		console.log("listOfRides[i] = ",  listOfRides[i]);
+	  console.log("listOfRides[i].user_type  = ",  listOfRides[i].user_type);
 		if (listOfRides[i].user_type == "passenger")  { 
-			console.log("INNNNNNNNNNNNNNNNNNNNNNNNNNN");
 			var passengerAttribute = {"Passenger": listOfRides[i] , "Rides" : listOfRides};
 	   		var resolute = checkRide(passengerAttribute);
 	   		 console.log("resolute = ",  resolute);
