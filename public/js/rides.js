@@ -24,12 +24,24 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        initRides('getRides', [myRidesService.getOptions('',' ',' ' ,' ',' ')], function(result) {
+        initRides('getRides', [myRidesService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
         console.log("Rides is " ,  result);
         $scope.options = result[0].data.Rides;
 
         self.Ride = { name : "", source :"" , destination : "", date:"", time:""};
         self.Rides = result[0].data.Rides;
+
+
+
+$scope.gridOptions = { 
+    selectedItems: $scope.mySelections,
+    multiSelect: false
+  };
+
+      $scope.columnDefs = [ 
+            { field: "name", visible: true },
+          {field: "destination", visible: false }
+        ];
 
         $scope.selectedOption = 0;
     });

@@ -30,7 +30,7 @@ angular.module('app').controller('getDrives', function($scope, myDrivesService, 
 
         self.Drive = { name : "", source :"" , destination : "", date:"", time:""};
         self.Drives = result[0].data.Drives;
-
+ console.log("in init controller" , self.Drives);
         $scope.selectedOption = 0;
     });
     

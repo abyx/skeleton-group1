@@ -89,8 +89,8 @@ var time = "undefined";
       date = request.body.date;
       time = request.body.time;
  }
-  var rides = listOfRidesData.GetDataOfDrives(name, source ,destination, date , time);
-  response.send({Rides:rides});
+  var drives = listOfRidesData.GetDataOfDrives(name, source ,destination, date , time);
+  response.send({Drives:drives});
 });
 
 

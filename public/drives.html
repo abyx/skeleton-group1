@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-header"><font color="Green">The Drives Of User</font></h1>
+        <h1 class="page-header"><font color="Green">The Driver Drives</font></h1>
     </div>
 </div>
 
@@ -72,12 +72,12 @@
 
 
 <div class="row">
-    <div class="col-md-2">
-         <label>Count Of Drive Alongs:<input class="form-control" type="text" ng-model="Drives.Drives.length" ></label>
+    <div class="col-md-4">
+         <label>Count Of Drive Alongs: {{ Drives.Drives.length }}</label>
     </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-md-4">
         <ul>
             <li ng-repeat="Drive in Drives.Drives"> {{ Drive.name + ', ' + Drive.source + ' > ' + Drive.destination + "  --  "+ Drive.date + " ("+Drive.time+")"  }}</li>
@@ -85,7 +85,12 @@
     </div>
 
 
+</div> -->
+
+<div class="row">
+      <div ui-grid="{ data: Drives.Drives }" class="myGrid"></div>
 </div>
+
 
 <div class="row">
       <label ng-if="Drives.Drive.is_in_db">

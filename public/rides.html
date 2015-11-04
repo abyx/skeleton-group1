@@ -12,12 +12,12 @@
     </div>
 </div>
 
-<table>
+<!-- <table>
 
  <tr>
 
  <td width="80%">   
-<div class="column">
+ <!-- <div class="column">
     <div class="col-md-3">
         <label>Name:<input class="form-control" type="text" ng-model="Rides.Ride.name" ></label>
 
@@ -47,13 +47,33 @@
         <label>Source:<input class="form-control" type="text" ng-model="Rides.Ride.source" ></label>
         <label>Destination:<input class="form-control" type="text" ng-model="Rides.Ride.destination" ></label>
     </div>
-</div>
-</td>
+</div> 
+
+<div class="row">
+    <div class="col-md-4">
+         <label>Count Of Ride Alongs: {{ Rides.Rides.length }} ></label>
+    </div>
+</div> -->
+
+<!-- <div class="row">
+    <div class="col-md-4">
+        <ul>
+            <li ng-repeat="ride in Rides.Rides"> {{ ride.name + ', ' + ride.source + ' > ' + ride.destination + "  --  "+ ride.date + " ("+ride.time+")"  }}</li>
+        </ul>
+    </div>
+
+</div>-->
+
+<!-- </td>
 
 <td width="20%" align="left"><img src="carPoll.jpg"/></td>
 
 </tr>
-</table>
+</table> -->
+
+<div class="row" width="100%"> 
+      <div ui-grid="{ data: Rides.Rides }" class="myGrid"></div>
+</div>
 
 <!--<div class="row">
     <div class="col-md-8">
@@ -71,21 +91,7 @@
 </div>
 
 
-<div class="row">
-    <div class="col-md-2">
-         <label>Count Of Ride Alongs:<input class="form-control" type="text" ng-model="Rides.Rides.length" ></label>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <ul>
-            <li ng-repeat="ride in Rides.Rides"> {{ ride.name + ', ' + ride.source + ' > ' + ride.destination + "  --  "+ ride.date + " ("+ride.time+")"  }}</li>
-        </ul>
-    </div>
-
-
-</div>
 
 <div class="row">
       <label ng-if="Rides.Ride.is_in_db">
