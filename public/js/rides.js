@@ -33,17 +33,22 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
 
 
 
-$scope.gridOptions = { 
-    selectedItems: $scope.mySelections,
+self.gridOptions = { 
+    selectedItems: self.myRides,
     multiSelect: false
   };
 
-      $scope.columnDefs = [ 
-            { field: "name", visible: true },
-          {field: "destination", visible: false }
+      self.columnDefs = [ 
+           
+          {field: "source", displayName: "Source", visible: true },
+          {field: "destination",  displayName: "Destination", visible: true},
+          {field: "date",  displayName: "Date", visible: true},
+          {field: "time",  displayName: "Time", visible: true},
+           {field: "name",  displayName: "Rider Name", visible: true },
+          {field: "status_match",  displayName: "Has Match", visible: true}
         ];
 
-        $scope.selectedOption = 0;
+       self.selectedOption = 0;
     });
     
     
