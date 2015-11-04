@@ -8,6 +8,7 @@ var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
 var listOfRidesData = require('./getData');
+var userName = "Billy Brown";
  
 
 
@@ -25,7 +26,7 @@ app.post('/getPassenger', function(request, response) {
   response.send({passenger: {
     "user_type" : "passenger",
     "user_id":  Math.random(),
-    "name": "passenger",
+    "name": userName,
     "date": new Date().toJSON().slice(0,10),
     "time": "08:00",
     "source": "Tel-Aviv",
@@ -74,6 +75,27 @@ var time = "undefined";
   var rides = listOfRidesData.GetDataOfRides(name, source ,destination, date , time);
   response.send({Rides:rides});
 });
+
+app.post('/getDrives', function(request, response) {
+
+var name = "undefined";
+var source = "undefined";
+var destination = "undefined";
+var date = "undefined";
+var time = "undefined";
+  if (request.body != "undefined") 
+  {
+    console.log("request body is " , request.body);
+      name = request.body.name;
+      source = request.body.source;
+      destination = request.body.destination;
+      date = request.body.date;
+      time = request.body.time;
+ }
+  var rides = listOfRidesData.GetDataOfDrives(name, source ,destination, date , time);
+  response.send({Rides:rides});
+});
+
 
 
 app.get('/example', function(request, response) {
@@ -235,7 +257,7 @@ function matchRides() {
 
 	  var hour = 1;
 	  var interval = hour * 1 * 5 * 1000;
-	 
+	 return;
 	  setInterval(function() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
@@ -273,7 +295,7 @@ function matchRides() {
 			  			 	  	//{
 			  			 	  	 	  //markRideAsMatch(ride.passenger.user_id);
 			  			 	  	 //}
-			  			 	  	 markRideAsMatch(ride.passenger.user_id);
+			  			 	  	 markRideAsMatch(ridesList[i].passenger.user_id);
 		  			 	  	//}
 		  			 	  }
 	  			 	  }

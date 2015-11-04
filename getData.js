@@ -4,7 +4,7 @@ var exportArr =
 	
 		
 [
-
+/*
 {
 	  "user_type" : "Driver",
 	  "user_id" : "10",
@@ -33,7 +33,6 @@ var exportArr =
 	  "is_selected" : false,
 	  "is_email_sent": false 
 	},
-	/*
 	{
 	  "user_type" : "Driver",
 	  "user_id": "2",
@@ -119,7 +118,7 @@ var exportArr =
 	  "is_email_sent": false
 
 	}
-	
+	*/
 ]; 
 
 
