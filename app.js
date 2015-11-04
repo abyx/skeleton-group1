@@ -8,7 +8,7 @@ var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
 var listOfRidesData = require('./getData');
-var userName = "";
+var userName = "Billy Brown";
  
 
 
