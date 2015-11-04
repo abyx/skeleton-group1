@@ -24,7 +24,7 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        initRides('getRides', [myRidesService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
+        initRides('getRides', [myRidesService.getOptions('',' ',' ' ,' ',' ')], function(result) {
         console.log("Rides is " ,  result);
         $scope.options = result[0].data.Rides;
 
