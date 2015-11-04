@@ -2,7 +2,7 @@
 
  
 angular.module('app.Repositories', []);
-var myModule = angular.module('app', ['ngRoute','ui.bootstrap', 'app.Repositories'])
+var myModule = angular.module('app', ['ngRoute','ui.bootstrap', 'app.Repositories','ui.grid'])
 
 
 .directive('customDatepicker',function($compile,$timeout){
@@ -50,6 +50,16 @@ angular.module('app').config(function($routeProvider) {
       templateUrl: 'rides.html',
       controller: 'getRides',
       controllerAs: 'Rides'
+    })
+    .when('/drives', {
+      templateUrl: 'drives.html',
+      controller: 'getDrives',
+      controllerAs: 'Drives'
+    })
+      .when('/view2', {
+      templateUrl: 'view2.html',
+      controller: 'View2Ctrl',
+      controllerAs: 'Drives'
     })
     .when('/passanger', {
       templateUrl: 'PassangerRequest.html',

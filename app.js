@@ -74,6 +74,27 @@ var time = "undefined";
   response.send({Rides:rides});
 });
 
+app.post('/getDrives', function(request, response) {
+
+var name = "undefined";
+var source = "undefined";
+var destination = "undefined";
+var date = "undefined";
+var time = "undefined";
+  if (request.body != "undefined") 
+  {
+    console.log("request body is " , request.body);
+      name = request.body.name;
+      source = request.body.source;
+      destination = request.body.destination;
+      date = request.body.date;
+      time = request.body.time;
+ }
+  var rides = listOfRidesData.GetDataOfDrives(name, source ,destination, date , time);
+  response.send({Rides:rides});
+});
+
+
 
 app.get('/example', function(request, response) {
   response.send({success: true});
@@ -234,7 +255,7 @@ function matchRides() {
 
 	  var hour = 1;
 	  var interval = hour * 1 * 5 * 1000;
-	 
+	 return;
 	  setInterval(function() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
