@@ -119,7 +119,7 @@ var exportArr =
 	  "is_email_sent": false
 
 	}
-	*/
+	
 ]; 
 
 
@@ -130,6 +130,28 @@ module.exports = {
 		},
 		
 		GetDataOfRides:function(name, source ,destination, date , time) {
+			console.log("in get data of rides ", name, source ,destination, date , time);
+			var retArr = [];
+			for (i=0;i<exportArr.length;i++) {
+				if (exportArr[i].user_type == "passenger" 
+					&& 
+					(exportArr[i].name == name ||
+					 (exportArr[i].source == source &&
+					 exportArr[i].destination == destination &&
+					 exportArr[i].date == date &&
+					 exportArr[i].time == time )
+					 	)){ 
+					retArr.push(exportArr[i]);
+							console.log("pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+				} else{
+					console.log("not pushing of rides ", exportArr[i].name, exportArr[i].source ,exportArr[i].destination, exportArr[i].date , exportArr[i].time);
+
+				}
+			}
+			return retArr;
+
+		},
+		GetDataOfDrives:function(name, source ,destination, date , time) {
 			console.log("in get data of rides ", name, source ,destination, date , time);
 			var retArr = [];
 			for (i=0;i<exportArr.length;i++) {
