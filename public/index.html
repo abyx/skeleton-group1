@@ -15,6 +15,7 @@
         <script src="./js/app.js"></script>
         <script src="./js/home.js"></script>
          <script src="./js/rides.js"></script>
+         <script src="./js/riders.js"></script>
         <script src="./js/driver.js"></script>
           <script src="./js/drives.js"></script>
         <script src="./js/view2.js"></script>
@@ -46,9 +47,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#/">New Passanger Request</a></li>
                         <li><a href="#/driver">New Driver Request</a></li>
-                        <li><a href="#/rides">Show my Rides</a></li>
+                        <li><a href="#/rides">Show Matching Rides</a></li>
                         <li><a href="#/drives">Show Drives by Driver</a></li>
-                        
+                        <li><a href="#/riders">Show Rides by Passenger</a></li>
                     </ul>
                 </nav>
 
@@ -66,7 +67,8 @@
                         <tr>
                             <td><img src="status.png"/></td>
                             <td><i><h4 ><font color="Blue"> {{userName}} </font></h4></i></td>
-                             <td> <u> log-out :</u></td> 
+                             <td>&nbsp; </td><td>&nbsp; </td><td>&nbsp; </td><td>&nbsp; </td>
+                             <td>  log-out :</td> 
                              <td> <input class="form-control" type="text" ng-model="userName" >
 
                              </td>
