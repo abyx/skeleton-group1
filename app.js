@@ -244,7 +244,7 @@ function matchRides() {
 	  		{
 	  			console.log("ridesList = ",  ridesList);
 	  			
-	  			 for(i = 0; i < ridesList.length; i++)
+	  			 for(var i = 0; i < ridesList.length; i++)
 	  			 {
 	  			 	 console.log("ridesList[i] = ", ridesList[i]);
 	  			 	try
