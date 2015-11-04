@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-header" ><font color="Green">The Rides of {{userName}}</font></h1>
+        <h1 class="page-header" ><font color="Green">The Riders of {{userName}}</font></h1>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
  <td width="80%">   
  <div class="column">
     <div class="col-md-3">
-        <label>Name:<input class="form-control" type="text" ng-model="Rides.Ride.name" ></label>
+        <label>Name:<input class="form-control" type="text" ng-model="Riders.Ride.name" ></label>
 
      </div>
  </div>
@@ -29,7 +29,7 @@
             type="date"
             id="test"
             name="birthdate"
-            ng-model="Rides.Ride.date" 
+            ng-model="Riders.Ride.date" 
             popup="d MMM yyyy"
             options="dateOptions"
             opened="opened"
@@ -39,26 +39,26 @@
 </div>
 <div class="column">
     <div class="col-md-3">
-        <label>Time:<input class="form-control" type="text" ng-model="Rides.Ride.time"  ></label>
+        <label>Time:<input class="form-control" type="text" ng-model="Riders.Ride.time"  ></label>
     </div>
 </div>
 <div class="col">
     <div class="col-md-3">
-        <label>Source:<input class="form-control" type="text" ng-model="Rides.Ride.source" ></label>
-        <label>Destination:<input class="form-control" type="text" ng-model="Rides.Ride.destination" ></label>
+        <label>Source:<input class="form-control" type="text" ng-model="Riders.Ride.source" ></label>
+        <label>Destination:<input class="form-control" type="text" ng-model="Riders.Ride.destination" ></label>
     </div>
 </div> 
 
 <div class="row">
     <div class="col-md-4">
-         <label>Count Of Ride Alongs: {{ Rides.Rides.length }} ></label>
+         <label>Count Of Ride Alongs: {{ Riders.Rides.length }} ></label>
     </div>
 </div> 
 
 <!-- <div class="row">
     <div class="col-md-4">
         <ul>
-            <li ng-repeat="ride in Rides.Rides"> {{ ride.name + ', ' + ride.source + ' > ' + ride.destination + "  --  "+ ride.date + " ("+ride.time+")"  }}</li>
+            <li ng-repeat="ride in Riders.Riders"> {{ ride.name + ', ' + ride.source + ' > ' + ride.destination + "  --  "+ ride.date + " ("+ride.time+")"  }}</li>
         </ul>
     </div>
 
@@ -72,8 +72,8 @@
 </table>  
 
 <div class="row" width="100%"> 
-      <div ui-grid="{ data: Rides.Rides , 
-                    columnDefs:Rides.columnDefs }" class="myGrid"></div>
+      <div ui-grid="{ data: Riders.Rides , 
+                    columnDefs:Riders.columnDefs }" class="myGrid"></div>
 </div>
 
 <!--<div class="row">
@@ -87,7 +87,7 @@
         <p>... buttons!</p>
     </div> -->
       <div class="col-md-2">
-        <button type="button" class="btn btn-primary" ng-click="Rides.buttonClicked()">Query Rides</button>
+        <button type="button" class="btn btn-primary" ng-click="Riders.buttonClicked()">Query Riders</button>
     </div>
 </div> 
 
@@ -95,7 +95,7 @@
 
 
 <div class="row">
-      <label ng-if="Rides.Ride.is_in_db">
+      <label ng-if="Riders.Ride.is_in_db">
       	 <font color="Green"><h1>Your request is saved.</b></font>
       </label>
  </div

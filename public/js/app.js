@@ -51,11 +51,7 @@ angular.module('app').config(function($routeProvider) {
       controller: 'getRides',
       controllerAs: 'Rides'
     })
-    .when('/riders', {
-      templateUrl: 'riders.html',
-      controller: 'getRides',
-      controllerAs: 'Rides'
-    })
+    
     .when('/drives', {
       templateUrl: 'drives.html',
       controller: 'getDrives',
