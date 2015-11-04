@@ -24,14 +24,31 @@ angular.module('app').controller('getRides', function($scope, myRidesService, in
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        initRides('getRides', [myRidesService.getOptions('',' ',' ' ,' ',' ')], function(result) {
+        initRides('getRides', [myRidesService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
         console.log("Rides is " ,  result);
         $scope.options = result[0].data.Rides;
 
         self.Ride = { name : "", source :"" , destination : "", date:"", time:""};
         self.Rides = result[0].data.Rides;
 
-        $scope.selectedOption = 0;
+
+
+self.gridOptions = { 
+    selectedItems: self.myRides,
+    multiSelect: false
+  };
+
+      self.columnDefs = [ 
+           
+          {field: "source", displayName: "Source", visible: true },
+          {field: "destination",  displayName: "Destination", visible: true},
+          {field: "date",  displayName: "Date", visible: true},
+          {field: "time",  displayName: "Time", visible: true},
+           {field: "name",  displayName: "Rider Name", visible: true },
+          {field: "status_match",  displayName: "Has Match", visible: true}
+        ];
+
+       self.selectedOption = 0;
     });
     
     

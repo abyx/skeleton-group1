@@ -28,9 +28,9 @@ app.post('/getPassenger', function(request, response) {
     "user_id":  Math.random(),
     "name": userName,
     "date": new Date().toJSON().slice(0,10),
-    "time": "08:00",
-    "source": "Tel-Aviv",
-    "destination": "Jerusalem",
+    "time": "",
+    "source": "",
+    "destination": "",
     "mail" : "group11@mailinator.com ", //"fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false,
@@ -42,11 +42,14 @@ app.post('/getDriver', function(request, response) {
   response.send({driver: {
     "user_type" : "Driver",
     "user_id":  Math.random(),
-    "name": "driver",
+    "name": userName,
     "date": new Date().toJSON().slice(0,10),
-    "time": "08:00",
-    "source": "Tel-Aviv",
-    "destination": "Jerusalem",
+    //"time": "08:00",
+    //"source": "Tel-Aviv",
+    //"destination": "Jerusalem", 
+    "time": "",
+    "source": "",
+    "destination": "",
     "mail" : "fredgeorge123@mail.com",
     "status_match": false,
     "is_in_db":false,
@@ -92,8 +95,8 @@ var time = "undefined";
       date = request.body.date;
       time = request.body.time;
  }
-  var rides = listOfRidesData.GetDataOfDrives(name, source ,destination, date , time);
-  response.send({Rides:rides});
+  var drives = listOfRidesData.GetDataOfDrives(name, source ,destination, date , time);
+  response.send({Drives:drives});
 });
 
 

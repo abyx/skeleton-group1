@@ -30,8 +30,26 @@ angular.module('app').controller('getDrives', function($scope, myDrivesService, 
 
         self.Drive = { name : "", source :"" , destination : "", date:"", time:""};
         self.Drives = result[0].data.Drives;
+ console.log("in init controller" , self.Drives);
+      
+        self.gridOptions = { 
+                 selectedItems: self.myRides,
+                multiSelect: false
+              };
 
-        $scope.selectedOption = 0;
+      self.columnDefs = [ 
+           
+          {field: "source", displayName: "Source", visible: true },
+          {field: "destination",  displayName: "Destination", visible: true},
+          {field: "date",  displayName: "Date", visible: true},
+          {field: "time",  displayName: "Time", visible: true},
+           {field: "name",  displayName: "Driver Name", visible: true },
+          {field: "status_match",  displayName: "Has Riders", visible: true}
+        ];
+
+       self.selectedOption = 0;
+
+
     });
     
     
