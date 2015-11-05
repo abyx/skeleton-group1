@@ -223,8 +223,9 @@ module.exports = {
 			 updating.is_email_sent = true;
 		},
 		
-		getRankByUser : function(userName, userId)
+		getUser : function(user)
 		{
-			  var rank = _.where(exportArr, { 'user_id': userId, "name": userName }).length;
+			  user.rank = _.where(exportArr, { 'user_id': user.userId, "name": user.userName }).length;
+			  return user;
 		}		
 }

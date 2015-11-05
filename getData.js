@@ -225,7 +225,11 @@ module.exports = {
 		
 		getUser : function(user)
 		{
-			  user.rank = _.where(exportArr, { 'user_id': user.userId, "name": user.userName }).length;
-			  return user;
+			  //client.
+			  //user.rank = _.where(exportArr, { 'user_id': user.userId, "name": user.userName }).length;
+			  //return user;
+			   
+			   return { userName: "userName", email : "email", userId: "userId", userRank: 5 }
+			  
 		}		
 }

@@ -299,7 +299,7 @@ function matchRides() {
 	  			 	 //console.log("ridesList[i] = ", ridesList[i]);
 	  			 	try
 	  			 	{
-	  			 		var isToSendEmailBool = moshe(ridesList[i]);
+	  			 		var isToSendEmailBool = isToSendEmailFunc(ridesList[i]);
 	  			 		 
 	  			 		if(isToSendEmailBool)
 	  			 		{
@@ -337,9 +337,9 @@ function matchRides() {
 		}, interval);
 }
 
-function moshe(ride)
+function isToSendEmailFunc(ride)
 {
-	 console.log("In moshe ride = ", ride);
+	 console.log("In isToSendEmailFunc ride = ", ride);
 	 var isToSend = false;
 	 if(ride.passenger.is_email_sent)
 	 {
@@ -417,14 +417,14 @@ function SavePost(list)
 
 app.post('/getUser', function(request, response) {
 
-  var user = "undefined";
+  var user = undefined;
    
-  if (request.body != "undefined") 
+  if (!request.body) 
   {
   	console.log("request body is " , request.body);
   	var user = {userName : request.body.userName, userId: request.body.userId, userRank = 0}
   }
   
-  user = listOfRidesData.getRankByUser(user);
+  user = listOfRidesData.getUser(user);
   response.send(user);
 });
