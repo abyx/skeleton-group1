@@ -307,7 +307,7 @@ myModule.controller('getUsers', function($scope, myService, init, UsersRepositor
         console.log("appInitialized - selection: " + $scope.selectedOption);
         $scope.logentries.push(($scope.logentries.length + 1) + " - appInitialized - selection: " + $scope.selectedOption);
     });
-   } 
+   }  
    
   self.post = function(UsersRepository,UsersList)
   {       
@@ -348,6 +348,7 @@ myModule.controller('getUsers', function($scope, myService, init, UsersRepositor
     {
        UsersRepository.post([self.Users]);
        $timeout(function(){ $route.reload(); }, 2000);
+       console.log("Thank you for sign up KDCarPoll");
     }
    
   
