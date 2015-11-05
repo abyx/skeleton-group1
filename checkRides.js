@@ -4,14 +4,12 @@ var listOfRidesData = require('./getData');
  
 
 module.exports = { 
-
-
-
-	checkRides : function  () 
+ 
+checkRides : function  () 
 {
 	var response = [];
-	var listOfRides = listOfRidesData.GetData() ;
-	//console.log("list of rides is  = ",  listOfRides);
+	return listOfRidesData.GetData().then(function(listOfRides) {
+    //console.log("list of rides is  = ",  listOfRides);
 	//console.log("LENGTH="+listOfRides.length);
 	
    for (i=0; i<listOfRides.length ;i++)
@@ -30,7 +28,9 @@ module.exports = {
 		} 
 	}
  
-  return response;
+  		return response;
+	}) ;
+	
 }
 }
  function checkRide (request) 

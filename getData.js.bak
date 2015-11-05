@@ -1,5 +1,6 @@
 var _ = require('lodash');
-
+var elasticsearch = require('elasticsearch');
+var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 var exportArr = 
 	
 		
@@ -89,7 +90,7 @@ var exportArr =
 	  "mail" : "HEN111@mail.com",
 	  "status_match": true,
 	  "is_in_db":true,
-	  "is_selected" : false,
+	  	"is_selected" : false,
 	  "is_email_sent": false
 	},
 	{
@@ -125,15 +126,108 @@ var exportArr =
 ]; 
 
 
+
+function resultToJson(result) {
+
+  return _.merge({id: result._id}, result._source);
+}
+
 module.exports = {
-		GetData:function ()
+		GetData:function (response)
 		{
-			return exportArr;
+
+			 client.create({
+      index: 'kdcar',
+      type: 'users',
+      body: {
+	   "name": "Miki Lev",
+	   "user_id" : "5",
+	  "passengers": [ {
+						"user_type" : "passenger",
+	  					"user_id": "5",
+	  					"name": "Miki Lev",
+	  					"date": "2/11/15",
+				    	"time": "10:00:00",
+	  					"source": "Tel-Aviv",
+	  					"destination": "HAIFA",
+	  					"mail" : "miki.lev@mail.com",
+	  					"status_match": false,
+	  					"is_in_db":true,
+	  					"is_selected" : false,
+	  					"is_email_sent": false
+
+	  }]
+
+		}
+    }).then(function(result) {
+    	console.log("result._id = " , result._id);
+   	  });
+   	 
+			console.log ("in get data");
+			return client.search({
+			       
+ 				index: 'kdcar',
+ 				type: 'users',
+				query: {
+    				filtered: {
+      					query: {
+        					match_all: {}
+      						},
+      					filter: {
+        					nested : {
+		          					path : ["passengers","drivers"]
+   									}
+   								}
+   							}
+   						}
+    			}).then(
+      				function(resources) {
+      					console.log ("in get data - hits");
+        				return _.map(resources.hits.hits, resultToJson);
+
+      				},
+      				function(result) {
+      					console.log ("in get error");
+        				throw result;
+      				}
+    			);
+			 
 		},
 		
 		GetDataOfRides:function(name, source ,destination, date , time) {
 			console.log("in get data of rides *{0}*", name, source ,destination, date , time);
-			var retArr = [];
+			
+
+ 			return client.search({
+			       
+ 				index: 'kdcar',
+ 				type: 'users',
+				query: {
+    				filtered: {
+      					query: {
+        					match_all: {}
+      						},
+      					filter: {
+        					nested : {
+		          					path : ["passengers"]
+
+   									}
+   								}
+   							}
+   						}
+    			}).then(
+      				function(resources) {
+      					var retArr = [];
+      					console.log ("in get data - hits");
+        				retArr = _.map(resources.hits.hits, resultToJson);
+
+      				},
+      				function(result) {
+      					console.log ("in get error");
+        				throw result;
+      				}
+    			);
+
 			for (i=0;i<exportArr.length;i++) {
 				if (exportArr[i].user_type == "passenger" 
 					&& 
@@ -223,8 +317,13 @@ module.exports = {
 			 updating.is_email_sent = true;
 		},
 		
-		getRankByUser : function(userName, userId)
+		getUser : function(user)
 		{
-			  var rank = _.where(exportArr, { 'user_id': userId, "name": userName }).length;
+			  //client.
+			  //user.rank = _.where(exportArr, { 'user_id': user.userId, "name": user.userName }).length;
+			  //return user;
+			   
+			   return { userName: "userName", email : "email", userId: "userId", userRank: 5 }
+			  
 		}		
 }
