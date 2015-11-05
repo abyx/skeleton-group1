@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Skeleton app</title>
+        <title>KD Car</title>
 
         <link rel="stylesheet" href="./css/bootstrap.min.css">
  
@@ -14,8 +14,22 @@
         <script src="./js/datepicker.js"></script>
         <script src="./js/app.js"></script>
         <script src="./js/home.js"></script>
-        <script src="./js/view1.js"></script>
+         <script src="./js/rides.js"></script>
+         <script src="./js/riders.js"></script>
+        <script src="./js/driver.js"></script>
+          <script src="./js/drives.js"></script>
         <script src="./js/view2.js"></script>
+         <link rel="stylesheet" type="text/css" href="./js/lib/ui-grid/ui-grid.min.css" />
+         <script src="./js/lib/ui-grid/ui-grid.min.js" ></script>
+        
+ <style >
+
+ .myGrid {
+    width: 100%;
+    height: 250px;
+  }
+ </style>
+
     </head>
 
     <body>
@@ -33,18 +47,41 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#/">New Passanger Request</a></li>
                         <li><a href="#/driver">New Driver Request</a></li>
-                        <li><a href="#/view2">Show my Rides</a></li>
+                        <li><a href="#/rides">Show Matching Rides</a></li>
+                        <li><a href="#/drives">Show Drives by Driver</a></li>
+                        <li><a href="#/riders">Show Rides by Passenger</a></li>
                     </ul>
                 </nav>
+
+
+
+<!--<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="userName"></p>
+<p>You wrote: {{ userName }}</p> -->
+
+
+
+                <div ng-app="" >
+                     <div ng-app="" ng-init="userName='Billy Browm'">
+                    <table>
+                        <tr>
+                            <td><img src="status.png"/></td>
+                            <td><i><h4 ><font color="Blue"> {{userName}} </font></h4></i></td>
+                             <td>&nbsp; </td><td>&nbsp; </td><td>&nbsp; </td><td>&nbsp; </td>
+                             <td>  log-out :</td> 
+                             <td> <input class="form-control" type="text" ng-model="userName" >
+
+                             </td>
+                        </tr>
+                    </table>
+                                       
+                </div>
+
             </div>
         </header>
 
+
         <div class="container" ng-view></div>
-
-
-        
-
-   
     
     <script type="text/ng-template" id="custom-datepicker.html">
         <div class="form-inline enhanced-datepicker">

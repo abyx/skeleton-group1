@@ -243,10 +243,13 @@ module.exports = {
 		
 		markEmailAsSent: function(trempItemId)
 		{
-			 console.log("in markEmailIsSent.   trempItemId = ", trempItemId);
 			 var updating = _.findWhere(exportArr, { 'user_id': trempItemId });
-			 console.log('updating', updating);
 			 updating.is_email_sent = true;
-		}
+		},
 		
+		getUser : function(user)
+		{
+			  user.rank = _.where(exportArr, { 'user_id': user.userId, "name": user.userName }).length;
+			  return user;
+		}		
 }

@@ -67,6 +67,11 @@ angular.module('app').config(function($routeProvider) {
       controller: 'getPassenger',
       controllerAs: 'passanger'
     })
+        .when('/users', {
+      templateUrl: 'SignIn.html',
+      controller: 'getUsers',
+      controllerAs: 'users'
+    })
     .otherwise({redirectTo: '/'});
 });
 
@@ -254,5 +259,136 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
 
 }); 
 
+/*
+angular.module('app.Repositories').factory('UserRepository', function($http) {
+	  return {
+        post: function(userId) {
+            $http.post('http://localhost:3000/PassengerRequest',	passengerList).then(	
+   						function(response)	
+   						{	
+   							  console.log('in PassengerRepository.post. got response=',	response.data);
+
+					        for (i= 0; i< passengerList.length; i++)  
+					        {
+					          passengerList[i].is_in_db = true;
+					           
+					        }
+					
+							},
+					
+					   	function(response)
+		   				{
+		  					console.log('in PassengerRepository.post. got response=',	response.data);
+		            for (i= 0; i< passengerList.length; i++) 
+		            {
+		              passengerList[i].is_in_db = false;
+		            }
+		 						alert ('Error');
+		   				}   						
+						);
+        }
+    };
+
+}); 
+*/
 
 
+
+myModule.controller('getUsers', function($scope, myService, init, UsersRepository, $timeout, $route) {
+    var self = this;
+   
+    console.log("in users. controller  BEGAIN.");
+    function initController() {
+          $scope.selectedOption = null;
+          $scope.options = [];
+          $scope.logentries = [];
+        init('getUsers', [myService.getOptions()], function(result) {
+        console.log("user is " ,  result);
+        $scope.options = result[0].data.user;
+
+        self.users = result[0].data.user;
+        $scope.selectedOption = 0;
+    });
+    
+    
+    $scope.$on('appInitialized', function () {
+        console.log("appInitialized - selection: " + $scope.selectedOption);
+        $scope.logentries.push(($scope.logentries.length + 1) + " - appInitialized - selection: " + $scope.selectedOption);
+    });
+   } 
+   
+  self.post = function(UsersRepository,UsersList)
+  {       
+    console.log("in user.post BEGAIN. UserRepository= " + PassengerRepository + ", usersList= " + UsersList);
+     
+      PassengerRepository.post(self.UsersList).then(
+        function(result)
+        {
+          if(result != null && result != "undefined")
+          {
+            if(result.status == true)
+            {
+              console.log("in users.post. in success handler scope. result is true");
+            }
+          }
+
+         
+        },
+        function(result)
+        {
+          if(result != null && result != "undefined")
+          {
+            console.log("in users.post. in error handler scope");
+          }
+         
+    
+        }
+      )
+      .catch(function(result)
+      {User
+        console.log("in user.post. in catch handler scope");
+      
+      
+      });
+  }
+  
+    self.signClicked = function()
+    {
+       UsersRepository.post([self.Users]);
+       $timeout(function(){ $route.reload(); }, 2000);
+    }
+   
+    initController();
+  
+});
+
+angular.module('app.Repositories').factory('UsersRepository', function($http) {
+    return {
+        post: function(passengerList) {
+            $http.post('http://localhost:3000/UsersRequest',  passengerList).then(  
+              function(response)  
+              { 
+                  console.log('in UsersRepository.post. got response=', response.data);
+
+                  for (i= 0; i< usersList.length; i++) 
+                  {
+                    usersList[i].is_in_db = true;
+                     
+                  }
+          
+              },
+          
+              function(response)
+              {
+                console.log('in UsersRepository.post. got response=', response.data);
+                for (i= 0; i< pusersList.length; i++) 
+                {
+                  usersList[i].is_in_db = false;
+                }
+                alert ('Error');
+              }               
+            );
+        }
+    };
+
+}); 

@@ -9,6 +9,7 @@ var checkRides = require('./checkRides');
 var app = express();
 var listOfRidesData = require('./getData');
 var userName = "Billy Brown";
+var userRank = "";
  
 
 
@@ -417,3 +418,17 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
+
+app.post('/getUser', function(request, response) {
+
+  var user = "undefined";
+   
+  if (request.body != "undefined") 
+  {
+  	console.log("request body is " , request.body);
+  	var user = {userName : request.body.userName, userId: request.body.userId, userRank = 0}
+  }
+  
+  user = listOfRidesData.getUser(user);
+  response.send(user);
+});
