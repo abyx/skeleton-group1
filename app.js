@@ -7,12 +7,11 @@ var _ = require('lodash');
 var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
-<<<<<<< HEAD
+
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 var listOfRidesData = require('./getData');
-=======
+
 var db = require('./getData');
->>>>>>> 466f72f27bf60c0554e1f985678898c7ca63d273
 var userName = "Billy Brown";
 var userRank = "";
  
@@ -423,9 +422,7 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
-<<<<<<< HEAD
- 
-=======
+
 
 app.post('/getUser', function(request, response) {
   var user = undefined;
@@ -522,4 +519,4 @@ app.route('/user')
       }
     });
   });
->>>>>>> 466f72f27bf60c0554e1f985678898c7ca63d273
+
