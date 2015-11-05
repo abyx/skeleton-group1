@@ -7,12 +7,13 @@ var _ = require('lodash');
 var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
+var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 var listOfRidesData = require('./getData');
 var userName = "Billy Brown";
  
 
 
-var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
+
 
 app.use(express.static('public'));
 

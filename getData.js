@@ -215,6 +215,17 @@ module.exports = {
 		pushData:function (trempItem)
 		{
 			exportArr.push(trempItem);
+			client.create({
+		      index: 'kdcar',
+      		  type: 'users',
+              body: request.body
+    		})
+    		.then(function(result) {
+    			console.log("saved to db!!!!!");
+    		})
+    		.catch(function() {
+      			console.log("error saving to db!!!!!");	
+    		});
 		},
 		
 		markEmailAsSent: function(trempItemId)
