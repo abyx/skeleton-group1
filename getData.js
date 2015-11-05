@@ -136,32 +136,7 @@ module.exports = {
 		GetData:function (response)
 		{
 
-			 client.create({
-      index: 'kdcar',
-      type: 'users',
-      body: {
-	   "name": "Miki Lev",
-	   "user_id" : "5",
-	  "passengers": [ {
-						"user_type" : "passenger",
-	  					"user_id": "5",
-	  					"name": "Miki Lev",
-	  					"date": "2/11/15",
-				    	"time": "10:00:00",
-	  					"source": "Tel-Aviv",
-	  					"destination": "HAIFA",
-	  					"mail" : "miki.lev@mail.com",
-	  					"status_match": false,
-	  					"is_in_db":true,
-	  					"is_selected" : false,
-	  					"is_email_sent": false
-
-	  }]
-
-		}
-    }).then(function(result) {
-    	console.log("result._id = " , result._id);
-   	  });
+			 
    	 
 			console.log ("in get data");
 			return client.search({
@@ -308,11 +283,30 @@ module.exports = {
 		
 		pushData:function (trempItem)
 		{
+			client.search({
+			       
+ 				index: 'kdcar',
+ 				type: 'users',
+				query: {
+      				match: {
+        				name: trempItem.name
+      				}
+      			}
+      		}).then(function (resp) {
+    				var hits = resp.hits.hits;
+    				console.log("found user document ",hits);
+
+				}, function (err) {
+    				console.log("error getting user document ",err.message);
+				});
+
+			
+
 			exportArr.push(trempItem);
 			client.create({
 		      index: 'kdcar',
       		  type: 'users',
-              body: request.body
+              body: trempItem
     		})
     		.then(function(result) {
     			console.log("saved to db!!!!!");
