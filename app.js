@@ -9,6 +9,7 @@ var checkRides = require('./checkRides');
 var app = express();
 var listOfRidesData = require('./getData');
 var userName = "Billy Brown";
+var userRank = "";
  
 
 
@@ -414,18 +415,16 @@ function SavePost(list)
   return res;
 }
 
-app.post('/getRankByUser', function(request, response) {
+app.post('/getUser', function(request, response) {
 
-  var rank = 0
-  var id = "undefined";
-
+  var user = "undefined";
+   
   if (request.body != "undefined") 
   {
-    console.log("request body is " , request.body);
-      name = request.body.name;
-      id = request.body.id;
+  	console.log("request body is " , request.body);
+  	var user = {userName : request.body.userName, userId: request.body.userId, userRank = 0}
   }
   
-  rank = listOfRidesData.getRankByUser(name, id);
-  response.send({rank:rank});
+  user = listOfRidesData.getUser(user);
+  response.send(user);
 });
