@@ -288,7 +288,10 @@ function matchRides() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
 	  		
-	  		var ridesList = checkRides.checkRides();
+	  		checkRides.checkRides().then(function (ridesList) {
+
+
+
 	  			
 	  		if(ridesList != null && ridesList != 'undefined')
 	  		{
@@ -331,7 +334,8 @@ function matchRides() {
 	  			 		console.log("error = " + err);
 	  			 	}
 	  			 }
-	  		}	
+	  		}
+        });	
 	  			
 	  		
 		}, interval);
@@ -414,6 +418,7 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
+<<<<<<< HEAD
 
 app.post('/getUser', function(request, response) {
   var user = undefined;
@@ -431,3 +436,6 @@ app.post('/getUser', function(request, response) {
   
    response.send(user);
 });
+=======
+ 
+>>>>>>> 9f3a93a7a23a7c538ade5b3273d600ac6aca0eb4

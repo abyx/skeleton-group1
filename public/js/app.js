@@ -150,6 +150,9 @@ myModule.service('myService', function($http) {
     };
 });
 
+ 
+
+
 
 myModule.controller('getPassenger', function($scope, myService, init, PassangerRepository, $timeout, $route) {
     var self = this;
@@ -165,6 +168,11 @@ myModule.controller('getPassenger', function($scope, myService, init, PassangerR
 
         self.passenger = result[0].data.passenger;
         $scope.selectedOption = 0;
+
+
+ 
+ 
+       
     });
     
     
