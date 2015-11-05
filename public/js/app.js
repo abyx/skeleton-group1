@@ -350,7 +350,6 @@ myModule.controller('getUsers', function($scope, myService, init, UsersRepositor
        $timeout(function(){ $route.reload(); }, 2000);
     }
    
-    initController();
   
 });
 
