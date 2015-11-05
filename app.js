@@ -287,7 +287,10 @@ function matchRides() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
 	  		
-	  		var ridesList = checkRides.checkRides();
+	  		checkRides.checkRides().then(function (ridesList) {
+
+
+
 	  			
 	  		if(ridesList != null && ridesList != 'undefined')
 	  		{
@@ -330,7 +333,8 @@ function matchRides() {
 	  			 		console.log("error = " + err);
 	  			 	}
 	  			 }
-	  		}	
+	  		}
+        });	
 	  			
 	  		
 		}, interval);

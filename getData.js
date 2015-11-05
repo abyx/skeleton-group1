@@ -1,5 +1,6 @@
 var _ = require('lodash');
-
+var elasticsearch = require('elasticsearch');
+var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 var exportArr = 
 	
 		
@@ -125,15 +126,38 @@ var exportArr =
 ]; 
 
 
+
+function resultToJson(result) {
+  return _.merge({id: result._id}, result._source);
+}
+
 module.exports = {
-		GetData:function ()
+		GetData:function (response)
 		{
-			return exportArr;
+			console.log ("in get data");
+			return client.search({
+			       index: 'kdcar',
+      			   type: 'users'
+    			}).then(
+      				function(resources) {
+      					console.log ("in get data - hits");
+        				return _.map(resources.hits.hits, resultToJson);
+
+      				},
+      				function(result) {
+      					console.log ("in get error");
+        				throw result;
+      				}
+    			);
+			 
 		},
 		
 		GetDataOfRides:function(name, source ,destination, date , time) {
 			console.log("in get data of rides *{0}*", name, source ,destination, date , time);
 			var retArr = [];
+
+ 			
+
 			for (i=0;i<exportArr.length;i++) {
 				if (exportArr[i].user_type == "passenger" 
 					&& 
