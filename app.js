@@ -415,16 +415,3 @@ function SavePost(list)
   return res;
 }
 
-app.post('/getUser', function(request, response) {
-
-  var user = "undefined";
-   
-  if (request.body != "undefined") 
-  {
-  	console.log("request body is " , request.body);
-  	var user = {userName : request.body.userName, userId: request.body.userId, userRank = 0}
-  }
-  
-  user = listOfRidesData.getUser(user);
-  response.send(user);
-});
