@@ -10,6 +10,7 @@ var app = express();
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 var listOfRidesData = require('./getData');
 var userName = "Billy Brown";
+var userRank = "";
  
 
 
@@ -414,3 +415,4 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
+
