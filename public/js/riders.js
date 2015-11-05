@@ -1,4 +1,4 @@
-myModule.service('myRidesService', function($http) {
+myModule.service('myRidersService', function($http) {
    
  
 
@@ -16,25 +16,25 @@ myModule.service('myRidesService', function($http) {
 
     });
 
-angular.module('app').controller('getRides', function($scope, myRidesService, initRides, RidesRepository) {
+angular.module('app').controller('getRiders', function($scope, myRidersService, initRiders, RidersRepository) {
     var self = this;
    
-   	console.log("in Rides. controller  BEGAIN.");
+   	console.log("in Riders. controller  BEGAIN.");
     function initController() {
           $scope.selectedOption = null;
           $scope.options = [];
           $scope.logentries = [];
-        initRides('getRides', [myRidesService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
-        console.log("Rides is " ,  result);
-        $scope.options = result[0].data.Rides;
+        initRiders('getRides', [myRidersService.getOptions(' ',' ',' ' ,' ',' ')], function(result) {
+        console.log("Riders is " ,  result);
+        $scope.options = result[0].data.Riders;
 
         self.Ride = { name : "", source :"" , destination : "", date:"", time:""};
-        self.Rides = result[0].data.Rides;
+        self.Rides = result[0].data.Riders;
 
 
 
 self.gridOptions = { 
-    selectedItems: self.myRides,
+    selectedItems: self.myRiders,
     multiSelect: false
   };
 
@@ -58,18 +58,18 @@ self.gridOptions = {
     });
    } 
    
-  self.post = function(RidesRepository, RidesList)
+  self.post = function(RidersRepository, RidersList)
 	{				
-		console.log("in Rides.post BEGAIN. RidesRepository= " + RidesRepository + ", RidesList= " + RidesList);
+		console.log("in Riders.post BEGAIN. RidersRepository= " + RidersRepository + ", RidersList= " + RidersList);
 		 
-		  RidesRepository.post(self.RidesList).then(
+		  RidersRepository.post(self.RidersList).then(
 				function(result)
 				{
 					if(result != null && result != "undefined")
 					{
 						if(result.status == true)
 						{
-							console.log("in Rides.post. in success handler scope. result is true");
+							console.log("in Riders.post. in success handler scope. result is true");
 						}
 					}
 				},
@@ -77,32 +77,32 @@ self.gridOptions = {
 				{
 					if(result != null && result != "undefined")
 					{
-						console.log("in Rides.post. in error handler scope");
+						console.log("in Riders.post. in error handler scope");
 					}
 				}
 			)
 			.catch(function(result)
 			{
-				console.log("in Rides.post. in catch handler scope");
+				console.log("in Riders.post. in catch handler scope");
 			});
 	}
 
-  self.get = function(RidesRepository, nameParam,sourceParam,destinationParam,dateParam,timeParam,Rides)
+  self.get = function(RidersRepository, nameParam,sourceParam,destinationParam,dateParam,timeParam,Riders)
   {       
-    console.log("in Rides.get BEGAIN. RidesRepository= " + RidesRepository );
+    console.log("in Riders.get BEGAIN. RidersRepository= " + RidersRepository );
      
-      RidesRepository.get(self.Ride.name,
+      RidersRepository.get(self.Ride.name,
         self.Ride.source,
         self.Ride.destination,
         self.Ride.date,
-        self.Ride.time,self.Rides).then(
+        self.Ride.time,self.Riders).then(
         function(result)
         {
           if(result != null && result != "undefined")
           {
             if(result.status == true)
             {
-              console.log("in Rides.get. in success handler scope. result is true");
+              console.log("in Riders.get. in success handler scope. result is true");
             }
           }
         },
@@ -110,13 +110,13 @@ self.gridOptions = {
         {
           if(result != null && result != "undefined")
           {
-            console.log("in Rides.get. in error handler scope");
+            console.log("in Riders.get. in error handler scope");
           }
         }
       )
       .catch(function(result)
       {
-        console.log("in Rides.get. in catch handler scope");
+        console.log("in Riders.get. in catch handler scope");
       });
   }
 	
@@ -124,7 +124,7 @@ self.gridOptions = {
 		{
 
       console.log(" buttonClicked ");
-			 RidesRepository.get(self.Ride.name,
+			 RidersRepository.get(self.Ride.name,
         self.Ride.source,
         self.Ride.destination,
         self.Ride.date,
@@ -135,17 +135,17 @@ self.gridOptions = {
 	
 });
 
-angular.module('app.Repositories').factory('RidesRepository', function($http) {
+angular.module('app.Repositories').factory('RidersRepository', function($http) {
 	  return {
-        post: function(RidesList) {
-            $http.post('http://localhost:3000/RidesRequest',	RidesList).then(	
+        post: function(RidersList) {
+            $http.post('http://localhost:3000/RidersRequest',	RidersList).then(	
    						function(response)	
    						{	
-   							  console.log('in RidesRepository.post. got response=',	response.data);
+   							  console.log('in RidersRepository.post. got response=',	response.data);
 
-					        for (i= 0; i< RidesList.length; i++) 
+					        for (i= 0; i< RidersList.length; i++) 
 					        {
-					          RidesList[i].is_in_db = true;
+					          RidersList[i].is_in_db = true;
 					           
 					        }
 					
@@ -153,34 +153,34 @@ angular.module('app.Repositories').factory('RidesRepository', function($http) {
 					
 					   	function(response)
 		   				{
-		  					console.log('in RidesRepository.post. got response=',	response.data);
-		            for (i= 0; i< RidesList.length; i++) 
+		  					console.log('in RidersRepository.post. got response=',	response.data);
+		            for (i= 0; i< RidersList.length; i++) 
 		            {
-		              RidesList[i].is_in_db = false;
+		              RidersList[i].is_in_db = false;
 		            }
 		 						alert ('Error');
 		   				}   						
 						);
         },
-        get: function(nameParam,sourceParam,destinationParam,dateParam,timeParam,Rides) {
+        get: function(nameParam,sourceParam,destinationParam,dateParam,timeParam,Riders) {
             $http.post('http://localhost:3000/getRides',   {name: nameParam,
                   source:sourceParam ,destination:destinationParam, 
                   date:dateParam , time:timeParam}).then(  
               function(response)  
               { 
                 
-                  console.log('in RidesRepository.get. got response=', response.data);
-                if (response.data.Rides != null && response.data.Rides != "undefined") {
+                  console.log('in RidersRepository.get. got response=', response.data);
+                if (response.data.Riders != null && response.data.Riders != "undefined") {
                 
-                while(Rides.length > 0) {
-                     Rides.pop();
+                while(Riders.length > 0) {
+                     Riders.pop();
                 }
                    
-                  for (i= 0; i< response.data.Rides.length; i++) 
+                  for (i= 0; i< response.data.Riders.length; i++) 
                   {
-                      console.log('in RidesRepository.get. updating...', response.data);
-                   response.data.Rides[i].is_selected = false;
-                    Rides.push(response.data.Rides[i]);
+                      console.log('in RidersRepository.get. updating...', response.data);
+                   response.data.Riders[i].is_selected = false;
+                    Riders.push(response.data.Riders[i]);
                      
                   }  
 
@@ -191,15 +191,15 @@ angular.module('app.Repositories').factory('RidesRepository', function($http) {
           
               function(response)
               {
-                console.log('in RidesRepository.get. got response=', response.data);
-                if (response.data.Rides != null && response.data.Rides != "undefined") {
-                    while(self.Rides.length > 0) {
-                     self.Rides.pop();
+                console.log('in RidersRepository.get. got response=', response.data);
+                if (response.data.Riders != null && response.data.Riders != "undefined") {
+                    while(self.Riders.length > 0) {
+                     self.Riders.pop();
                 }
-                for (i= 0; i< response.data.Rides.length; i++) 
+                for (i= 0; i< response.data.Riders.length; i++) 
                 {
-                  response.data.Rides[i].is_selected = false;
-                   self.Rides.push(response.data.Rides[i]);
+                  response.data.Riders[i].is_selected = false;
+                   self.Riders.push(response.data.Riders[i]);
                 }
                 }
                 alert ('Error');
@@ -211,7 +211,7 @@ angular.module('app.Repositories').factory('RidesRepository', function($http) {
 
 }); 
 
-myModule.factory('initRides', function ($q, $rootScope, $browser) {
+myModule.factory('initRiders', function ($q, $rootScope, $browser) {
  
   var initFunctions = [
     'getRides'
@@ -230,7 +230,7 @@ myModule.factory('initRides', function ($q, $rootScope, $browser) {
         });
       });
     };
-    getRides.initRides()
+    getRides.initRiders()
       .then(broadcastAppInitialized);
   };
  
@@ -244,16 +244,16 @@ myModule.factory('initRides', function ($q, $rootScope, $browser) {
     
   };
  
-  var initRides = function (name, dependencies, initCallback) {
+  var initRiders = function (name, dependencies, initCallback) {
     registeredInitFunctions[name] = {
-      initRides: function () {
+      initRiders: function () {
         var internalDependencies = $q.all(dependencies);
         return internalDependencies.then(initCallback);
       }};
     initAppWhenReady();
   };
  
-    initRides.watchAfterInit = function (scope, expression, listener, deepEqual) {
+    initRiders.watchAfterInit = function (scope, expression, listener, deepEqual) {
       scope.$watch(expression, function (newValue, oldValue, listenerScope) {
         if (initialized) {
           listener(newValue, oldValue, listenerScope);
@@ -261,7 +261,7 @@ myModule.factory('initRides', function ($q, $rootScope, $browser) {
       }, deepEqual);
     };
 
-    initRides.onAfterInit = function (scope, event, listener) {
+    initRiders.onAfterInit = function (scope, event, listener) {
       scope.$on(event, function (event) {
         if (initialized) {
           listener(event);
@@ -269,6 +269,6 @@ myModule.factory('initRides', function ($q, $rootScope, $browser) {
       });
     };
  
-  return  initRides;
+  return  initRiders;
 });
 
