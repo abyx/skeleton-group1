@@ -338,7 +338,7 @@ module.exports = {
 			client.create({
       index: 'kdcar',
       type: 'users',
-      body: {'user': user, passengerRequests: {}, driverRequests: {}}
+      body: user
 	    }).then(
 	      function(resources) {
 	        response.send(_.map(resources.hits.hits, resultToJson));

@@ -207,8 +207,8 @@ app.route('/resources')
 
 function getResourceById(id) {
   return client.get({
-    index: 'myindex',
-    type: 'resources',
+    index: 'kdcar',
+    type: 'users',
     id: id
   }).then(function(result) {
     return resultToJson(result);
@@ -466,4 +466,51 @@ app.route('/user')
 	  }
 	  
 	  response.send(user);
+  });
+  
+  app.route('/user/:id')
+  .get(function(request, response) {
+    getResourceById(request.params.id).then(function(result) {
+      response.send(result);
+    }).catch(function(error) {
+      if (error instanceof elasticsearch.errors.NotFound) {
+        response.sendStatus(404);
+      } else {
+        response.sendStatus(500);
+      }
+    });
+  })
+  .delete(function(request, response) {
+    client.delete({
+      index: 'kdcar',
+      type: 'users',
+      id: request.params.id
+    }).then(function(result) {
+      response.sendStatus(204);
+    }).catch(function(error) {
+      if (error instanceof elasticsearch.errors.NotFound) {
+        response.sendStatus(404);
+      } else {
+        response.sendStatus(500);
+      }
+    });
+  })
+  .put(function(request, response) {
+    // NOTE: this is a partial update
+    client.update({
+      index: 'kdcar',
+      type: 'users',
+      id: request.params.id,
+      body: {doc: request.body}
+    }).then(function(result) {
+      return getResourceById(result._id).then(function(object) {
+        response.send(object);
+      });
+    }).catch(function(error) {
+      if (error instanceof elasticsearch.errors.NotFound) {
+        response.sendStatus(404);
+      } else {
+        response.sendStatus(500);
+      }
+    });
   });
