@@ -7,7 +7,7 @@ var _ = require('lodash');
 var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
-var listOfRidesData = require('./getData');
+var db = require('./getData');
 var userName = "Billy Brown";
 var userRank = "";
  
@@ -288,7 +288,10 @@ function matchRides() {
 	  		
 	  		console.log("I am doing my 1 minutes check");
 	  		
-	  		var ridesList = checkRides.checkRides();
+	  		checkRides.checkRides().then(function (ridesList) {
+
+
+
 	  			
 	  		if(ridesList != null && ridesList != 'undefined')
 	  		{
@@ -299,7 +302,7 @@ function matchRides() {
 	  			 	 //console.log("ridesList[i] = ", ridesList[i]);
 	  			 	try
 	  			 	{
-	  			 		var isToSendEmailBool = moshe(ridesList[i]);
+	  			 		var isToSendEmailBool = isToSendEmailFunc(ridesList[i]);
 	  			 		 
 	  			 		if(isToSendEmailBool)
 	  			 		{
@@ -331,15 +334,16 @@ function matchRides() {
 	  			 		console.log("error = " + err);
 	  			 	}
 	  			 }
-	  		}	
+	  		}
+        });	
 	  			
 	  		
 		}, interval);
 }
 
-function moshe(ride)
+function isToSendEmailFunc(ride)
 {
-	 console.log("In moshe ride = ", ride);
+	 console.log("In isToSendEmailFunc ride = ", ride);
 	 var isToSend = false;
 	 if(ride.passenger.is_email_sent)
 	 {
@@ -416,15 +420,50 @@ function SavePost(list)
 }
 
 app.post('/getUser', function(request, response) {
-
-  var user = "undefined";
-   
-  if (request.body != "undefined") 
+  var user = undefined;
+  console.log("request body is " , request.body); 
+  
+  if (!request.body) 
   {
-  	console.log("request body is " , request.body);
-  	var user = {userName : request.body.userName, userId: request.body.userId, userRank = 0}
+  	 user = request.body
+     user = db.getUser(user);
+     if(!user)
+     {
+     	  db.createUser(user);
+     }
   }
   
-  user = listOfRidesData.getRankByUser(user);
-  response.send(user);
+   response.send(user);
 });
+
+app.route('/user')
+  .get(function(request, response) {
+    var user = undefined;
+    console.log("in user get request body is " , request.body); 
+    if (!request.body) 
+	  {
+	  	 user = request.body
+	     user = db.getUser(user);
+	     if(!user)
+	     {
+	     	  db.createUser(user);
+	     }
+	  }
+  
+   	response.send(user);
+    
+  })
+  .post(function(request, response) {
+    var user = undefined;
+    console.log("in user post request body is " , request.body); 
+    if (!request.body) 
+	  {
+	  	 user = request.body[0];
+	     if(!user)
+	     {
+	     	  user = db.createUser(user);
+	     }
+	  }
+	  
+	  response.send(user);
+  });

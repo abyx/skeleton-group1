@@ -324,7 +324,33 @@ module.exports = {
 		
 		getUser : function(user)
 		{
-			  user.rank = _.where(exportArr, { 'user_id': user.userId, "name": user.userName }).length;
-			  return user;
-		}		
+			client.search({
+      index: 'kdcar',
+      type: 'users',
+      id: user.email
+	    }).then(
+	      function(resources) {
+	        response.send(_.map(resources.hits.hits, resultToJson));
+	      },
+	      function() {
+	        response.sendStatus(500);
+	      }
+	    );
+		},
+		
+		createtUser : function(user)
+		{
+			client.create({
+      index: 'kdcar',
+      type: 'users',
+      body: user
+	    }).then(
+	      function(resources) {
+	        response.send(_.map(resources.hits.hits, resultToJson));
+	      },
+	      function() {
+	        response.sendStatus(500);
+	      }
+	    );
+		}			
 }

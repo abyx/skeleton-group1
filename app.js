@@ -7,8 +7,12 @@ var _ = require('lodash');
 var mailsender = require('./mail');
 var checkRides = require('./checkRides');
 var app = express();
+<<<<<<< HEAD
 var client = new elasticsearch.Client({ host: 'localhost:9200', log: 'trace', apiVersion: '2.0' });
 var listOfRidesData = require('./getData');
+=======
+var db = require('./getData');
+>>>>>>> 466f72f27bf60c0554e1f985678898c7ca63d273
 var userName = "Billy Brown";
 var userRank = "";
  
@@ -208,8 +212,8 @@ app.route('/resources')
 
 function getResourceById(id) {
   return client.get({
-    index: 'myindex',
-    type: 'resources',
+    index: 'kdcar',
+    type: 'users',
     id: id
   }).then(function(result) {
     return resultToJson(result);
@@ -303,7 +307,7 @@ function matchRides() {
 	  			 	 //console.log("ridesList[i] = ", ridesList[i]);
 	  			 	try
 	  			 	{
-	  			 		var isToSendEmailBool = moshe(ridesList[i]);
+	  			 		var isToSendEmailBool = isToSendEmailFunc(ridesList[i]);
 	  			 		 
 	  			 		if(isToSendEmailBool)
 	  			 		{
@@ -342,9 +346,9 @@ function matchRides() {
 		}, interval);
 }
 
-function moshe(ride)
+function isToSendEmailFunc(ride)
 {
-	 console.log("In moshe ride = ", ride);
+	 console.log("In isToSendEmailFunc ride = ", ride);
 	 var isToSend = false;
 	 if(ride.passenger.is_email_sent)
 	 {
@@ -419,4 +423,103 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
+<<<<<<< HEAD
  
+=======
+
+app.post('/getUser', function(request, response) {
+  var user = undefined;
+  console.log("request body is " , request.body); 
+  
+  if (!request.body) 
+  {
+  	 user = request.body
+     user = db.getUser(user);
+     if(!user)
+     {
+     	  db.createUser(user);
+     }
+  }
+  
+   response.send(user);
+});
+
+app.route('/user')
+  .get(function(request, response) {
+    var user = undefined;
+    console.log("in user get request body is " , request.body); 
+    if (!request.body) 
+	  {
+	  	 user = request.body
+	     user = db.getUser(user);
+	     if(!user)
+	     {
+	     	  db.createUser(user);
+	     }
+	  }
+  
+   	response.send(user);
+    
+  })
+  .post(function(request, response) {
+    var user = undefined;
+    console.log("in user post request body is " , request.body); 
+    if (!request.body) 
+	  {
+	  	 user = request.body[0];
+	     if(!user)
+	     {
+	     	  user = db.createUser(user);
+	     }
+	  }
+	  
+	  response.send(user);
+  });
+  
+  app.route('/user/:id')
+  .get(function(request, response) {
+    getResourceById(request.params.id).then(function(result) {
+      response.send(result);
+    }).catch(function(error) {
+      if (error instanceof elasticsearch.errors.NotFound) {
+        response.sendStatus(404);
+      } else {
+        response.sendStatus(500);
+      }
+    });
+  })
+  .delete(function(request, response) {
+    client.delete({
+      index: 'kdcar',
+      type: 'users',
+      id: request.params.id
+    }).then(function(result) {
+      response.sendStatus(204);
+    }).catch(function(error) {
+      if (error instanceof elasticsearch.errors.NotFound) {
+        response.sendStatus(404);
+      } else {
+        response.sendStatus(500);
+      }
+    });
+  })
+  .put(function(request, response) {
+    // NOTE: this is a partial update
+    client.update({
+      index: 'kdcar',
+      type: 'users',
+      id: request.params.id,
+      body: {doc: request.body}
+    }).then(function(result) {
+      return getResourceById(result._id).then(function(object) {
+        response.send(object);
+      });
+    }).catch(function(error) {
+      if (error instanceof elasticsearch.errors.NotFound) {
+        response.sendStatus(404);
+      } else {
+        response.sendStatus(500);
+      }
+    });
+  });
+>>>>>>> 466f72f27bf60c0554e1f985678898c7ca63d273
