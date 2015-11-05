@@ -251,6 +251,38 @@ angular.module('app.Repositories').factory('PassangerRepository', function($http
 
 }); 
 
+/*
+angular.module('app.Repositories').factory('UserRepository', function($http) {
+	  return {
+        post: function(userId) {
+            $http.post('http://localhost:3000/PassengerRequest',	passengerList).then(	
+   						function(response)	
+   						{	
+   							  console.log('in PassengerRepository.post. got response=',	response.data);
+
+					        for (i= 0; i< passengerList.length; i++)  
+					        {
+					          passengerList[i].is_in_db = true;
+					           
+					        }
+					
+							},
+					
+					   	function(response)
+		   				{
+		  					console.log('in PassengerRepository.post. got response=',	response.data);
+		            for (i= 0; i< passengerList.length; i++) 
+		            {
+		              passengerList[i].is_in_db = false;
+		            }
+		 						alert ('Error');
+		   				}   						
+						);
+        }
+    };
+
+}); 
+*/
 
 
 
