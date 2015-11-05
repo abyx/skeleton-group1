@@ -365,7 +365,7 @@ myModule.controller('getUsers', function($scope, myService, init, UsersRepositor
 angular.module('app.Repositories').factory('UsersRepository', function($http) {
     return {
         post: function(passengerList) {
-            $http.post('http://localhost:3000/UsersRequest',  passengerList).then(  
+            $http.post('http://localhost:3000/UsersRequest',  userList).then(  
               function(response)  
               { 
                   console.log('in UsersRepository.post. got response=', response.data);

@@ -209,7 +209,8 @@ module.exports = {
       						},
       					filter: {
         					nested : {
-		          					path : ["passengers"
+		          					path : ["passengers"]
+
    									}
    								}
    							}

@@ -418,5 +418,4 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
-
  
