@@ -418,7 +418,6 @@ function SavePost(list)
   var res = {status:"success"};
   return res;
 }
-<<<<<<< HEAD
 
 app.post('/getUser', function(request, response) {
   var user = undefined;
@@ -436,6 +435,35 @@ app.post('/getUser', function(request, response) {
   
    response.send(user);
 });
-=======
- 
->>>>>>> 9f3a93a7a23a7c538ade5b3273d600ac6aca0eb4
+
+app.route('/user')
+  .get(function(request, response) {
+    var user = undefined;
+    console.log("in user get request body is " , request.body); 
+    if (!request.body) 
+	  {
+	  	 user = request.body
+	     user = db.getUser(user);
+	     if(!user)
+	     {
+	     	  db.createUser(user);
+	     }
+	  }
+  
+   	response.send(user);
+    
+  })
+  .post(function(request, response) {
+    var user = undefined;
+    console.log("in user post request body is " , request.body); 
+    if (!request.body) 
+	  {
+	  	 user = request.body[0];
+	     if(!user)
+	     {
+	     	  user = db.createUser(user);
+	     }
+	  }
+	  
+	  response.send(user);
+  });
